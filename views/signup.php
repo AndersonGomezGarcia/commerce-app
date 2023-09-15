@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
+	<title>Signup Page</title>
    <!--Made with love by Mutiullah Samim -->
    
 	<!--Bootsrap 4 CDN-->
@@ -30,7 +30,7 @@
             <div class="mb-md-5 mt-md-4 pb-5">
               <form method="post" action="" > 
 
-                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
                 <?php 
                 include "../models/connection.php";
                 include "../controllers/controller_login.php"
@@ -55,7 +55,7 @@
             </div>
 
             <div>
-              <p class="mb-0">Don't have an account? <a href="signup.php" class="text-white-50 fw-bold">Sign Up</a>
+              <p class="mb-0">Have an account? <a href="login.php" class="text-white-50 fw-bold">Log in</a>
               </p>
             </div>
 
