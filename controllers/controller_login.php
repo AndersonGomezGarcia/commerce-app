@@ -13,7 +13,7 @@ if(!empty($_POST{"btnlogin"})){//verifica que el boton de logi nse presiona
             $_SESSION["name"]=$dates->name;
             $_SESSION["email"]=$dates->email;
             $_SESSION["password"]=$dates->password;
-            $_SESSION["rol"]=$dates->rol;
+            $_SESSION["role"]=$dates->role;
             header("location: index.php");
         }else{
             echo "<div class='alert alert-danger'>Accedo denegado</div>";

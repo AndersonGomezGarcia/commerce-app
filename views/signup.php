@@ -31,12 +31,17 @@
               <form method="post" action="" > 
 
                 <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
+                <!-- con esto conecto el post del formulario-->
                 <?php 
                 include "../models/connection.php";
-                include "../controllers/controller_login.php"
+                include "../controllers/controller_signup.php"
 
                 ?>
-                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                <p class="text-white-50 mb-5">Please enter your data for register</p>
+                <div class="form-outline form-white mb-4">
+                  <input type="text" id="typeEmailX" class="form-control form-control-lg" name="name" />
+                  <label class="form-label" for="typeEmailX">Name</label>
+                </div>
   
                 <div class="form-outline form-white mb-4">
                   <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" />
@@ -44,13 +49,15 @@
                 </div>
   
                 <div class="form-outline form-white mb-4">
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
+                  <input type="password" id="password" class="form-control form-control-lg" name="password" />
                   <label class="form-label" for="typePasswordX">Password</label>
+                  <input type="password" id="confirm_password" class="form-control form-control-lg" name="confirmpassword" />
+                  <label class="form-label" for="typePasswordX">Confirm Password</label>
                 </div>
+                
   
-                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
   
-                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="btnlogin" value="LOGIN">Login</button>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="signup" value="SIGNUP">Sign up</button>
               </form>
             </div>
 
@@ -80,3 +87,16 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
 }
 
 </style>
+<script>var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;</script>

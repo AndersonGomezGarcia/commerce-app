@@ -1,0 +1,520 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Roboto;
+    background-color: #D9D9D9;
+    overflow-x: hidden;
+    z-index: -3;
+}
+header{
+    z-index: 4;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    
+}
+nav{
+    top: 0;
+    position: -webkit-sticky;
+    width: 60.5vw;
+    height: 3.3vw;
+    position: sticky;
+    z-index: 4;
+    display: inline-flex;
+    background: #201D22;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+nav ul li{
+    padding: 15px;
+    display: inline-block;
+
+}
+
+nav ul li a{
+    display: inline-flex;
+    color: #CDCDCD;
+    text-decoration: none;
+    z-index: 5;
+
+}
+.front-page{
+    width: 100%;
+    height: 33vw;
+    background-color: #201D22;
+    border-radius: 0 0 0 8.5vw;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 5px 0 black;
+}
+.front-page .text{
+    color: white;
+    margin: 0px 110px 0 140px;
+    width: calc(66.75vw - 250px);
+}
+.front-page .text h1{
+    color: #201D22;
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+    background-size: 190% 190%;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 8px transparent;
+    font-size: 120px;
+    transition: 1s;
+}
+.front-page .text h1:hover{
+    background-position: 150% 150%;
+    transition: 0.6s;
+}
+.front-two{
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 33.7%;
+    background-image: url("front-image.png");
+    background-position: center;
+    background-size: cover;
+    height: 33.54vw;
+    border-radius: 0 0 0 8.5vw;
+    transition: 0.6s;
+    z-index: 2;
+}
+.front-two:hover{
+    transition: 0.6s;
+    background-position: 60% 60%;
+}
+.log-in{
+    
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+    background-size: 200%;
+    z-index: 3;
+    font-weight: bolder;
+    height: 4vw;
+    font-size: large;
+    font-family: Roboto;
+    border: 1px solid transparent;
+    border-radius: 0 0 25px 25px;
+    display: flex;
+    position: absolute;
+    margin-left: 55vw;
+    min-width: 18.5vw;
+    padding: none;
+    margin: none;
+    overflow: hidden;
+    transition: 1s;
+
+}
+.log-in:hover{
+    background-position: 100% 100%;
+    transition: 0.6s;
+    cursor: pointer;
+}
+.log-in a{
+    text-decoration: none;
+    color: #201D22;
+    font-weight: bolder;
+    font-size: larger;
+    
+    margin: auto;
+}
+
+.catalogue{
+    margin: 35vw 100px 20px 100px;
+    width: calc(100vw - 200px);
+    align-items: center;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+}
+.catalogue h1{
+    font-size:40px;
+    margin: auto;
+}
+/*---------------------------------------------------------
+ init uptades to products dot php
+----------------------------------------------------*/
+
+.card_seller{
+    width: 60vw;
+    height: auto;
+    min-height: 250px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #201D22;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 25px;
+    color: #D9D9D9;
+    display: inline-flex;
+
+    position: relative;
+    transition: 1s;
+}
+
+.card_seller .image{
+    margin: 20px 15px 20px 15px; 
+    width: 350px;
+    min-width: 350px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    transition: background-image 1s;
+    background-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(hotel.jpg);
+    background-size: 100%;
+    background-position: center;
+    transition: 1s;
+}
+.card_seller text{
+    margin: 20px 50px 50px 20px;
+}
+.card_seller text .tittle{
+    margin-left: 15px;
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 20px;
+}
+.ed{
+    display: block;
+}
+.ed .price{
+    margin: 20px 20px 0px 20px;
+}
+.ed button{
+    width: 80%;
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+button.addp{
+    padding: 28px!important;
+    float: right;
+    margin-right: 15vw;
+    margin-top: 0;
+}
+.ed button, button.addp{
+    margin-left: 20px;
+    color: #201D22;
+    font-weight: bolder;
+    font-size: large;
+    padding: 15px;
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+    background-size: 200%;
+    border: none;
+    border-radius: 8px;
+    transition: 1s;
+}
+
+.card_seller h3{
+    font-style: normal;
+    font-weight: 100;
+}
+
+/*asdasdasd*/
+.products{
+    margin-top: 50px!important;
+}
+.products .tittlep{
+    text-align: left;
+    width: auto;
+    max-width: 50vw;
+    height:auto;
+    margin-left: 15vw;
+    left: 0px;
+    float: left;
+    display: inline-block; 
+}
+/*--------------------------------------------------------
+end uptades to products dot php
+--------------------------------------------------------------*/
+.card{
+    width: 450px;
+    height: 550px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #201D22;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 25px;
+    color: #D9D9D9;
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    transition: 1s;
+}
+.card .image{
+    margin: 20px 15px 20px 15px; 
+    width: calc(100% - 30px);
+    height: 177px;
+    overflow: hidden;
+    border-radius: 25px;
+    display: flex;
+    vertical-align: middle;
+    transition: background-image 1s;
+    background-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(hotel.jpg);
+    background-size: 100%;
+    background-position: center;
+    transition: 1s;
+}
+.card .image:hover{
+    background-size: 135%;
+    transition: 0.6s;
+}
+
+.card .tittle{
+    margin-left: 15px;
+    text-align: left;
+    font-size: xx-large;
+}
+.card h4{
+    font-weight: 500;
+    margin: 10px 15px 10px 15px;
+    text-align: justify;
+}
+.card .price{
+    position: relative;
+    float: left;
+    bottom: 0px;
+    margin-left: 40px;
+    position: absolute;
+    bottom: 30px;
+}
+.card button{
+    color: #201D22;
+    font-weight: bolder;
+    font-size: large;
+    width: 100px;
+    padding: 15px;
+    margin-right: 50px;
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+    background-size: 200%;
+    border: none;
+    border-radius: 8px;
+    transition: 1s;
+    position: absolute;
+    bottom: 22px;
+    right: 0px;
+}
+
+.card button:hover{
+    background-position: 100%;
+    transition: 0.6s;
+    cursor: pointer;
+
+}
+#login-container {
+    display: none;
+    z-index: 6;
+    position: absolute;
+    width: 50vw;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+#login-container .login-content{
+    width: 70%;
+    padding: 5% 15% 5% 15%;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    background-color: #D9D9D9;
+}
+
+#login-container .login-content #close-btn{
+    position: absolute;
+    border: none;
+    height: 50px;
+    width: 50px;
+    top: 10px;
+    right: 10px;
+    background-image: url(x.png), linear-gradient(#D9D9D9,#D9D9D9);
+    background-size: contain;
+    transition: 1s;
+    opacity: 0.7;
+    
+}
+#login-container .login-content #close-btn:hover{
+    transform: rotate(90deg);
+    transition: 0.6s;
+    opacity: 1;
+}
+#login-container .login-content h2{
+    top: 0;
+    font-size: xx-large;
+    margin-bottom: 25px;
+    color: #201D22;
+}
+#login-container .login-content p{
+    margin-bottom: 20px;
+}
+#login-container .login-content label{
+    border: none;
+}
+#login-container .login-content input{
+    margin: 10px 10px 10px 0;
+    width: 100%;
+    border: none;
+    display: block;
+    border-bottom:1px solid #201D22;
+    background-color: transparent;
+    font-size: large;
+}
+#acerca p{
+    text-align: justify;
+}
+
+#login-end-btn{
+    color: #201D22;
+    font-weight: bolder;
+    font-size: large;
+    width: 100px;
+    padding: 15px;
+    margin-right: 135px;
+    margin-bottom: 0px;
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+    background-size: 200%;
+    border: none;
+    border-radius: 8px;
+    transition: 1s;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+#login-end-btn:hover{
+    background-position: 100%;
+    transition: 0.6s;
+    cursor: pointer;
+}
+div#blur{
+    z-index: 5;
+    top: 0;
+    transition: 1s;
+
+    
+}
+
+section{
+    margin: 50px 15% 25px 15% ;
+}
+
+.container-chat{
+    background-color: #201D22;
+    border-radius: 325px;
+    margin: 10% 15% 10% 15%;
+    display: flex;
+    padding: 20px;
+    color: #D9D9D9;
+    flex-direction: column;
+    text-align: center;
+}
+.container-chat h4, .container-chat h1{
+    float: top;
+    margin: 5%;
+    margin-top: 0;
+}
+.container-chat h4{
+    color: #A3A3A3;
+    font-weight: 400;
+    margin-right: 25px;
+
+
+}
+.container-chat .user{
+    top: 50%;
+    position: absolute;
+    left: 15%;
+
+}
+.container-chat .user img{
+    width: 15%;
+}
+.chat{
+    overflow-y:  visible;
+
+}
+.chat div{
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+    background-size: 200%;
+    margin-top: 15px;
+    border-radius: 25px;
+    max-width: 70%;
+    padding: 9px;
+    transition: 1s;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+}
+.chat div:hover{
+    background-position: 100%;
+    transition: 0.6s;
+}
+.me-chat{
+    float: right;
+    margin-left: 30%;
+    margin-right: 15%;
+}
+.second-chat{
+    float: left;
+    margin-left: 15%;
+    margin-right: 30%;
+}
+.writting{
+    width: 100%;
+}
+.writting input{
+    margin: none;
+    border: none;
+    border-radius: 25px;
+    margin-top: 25px;
+    width: 70%;
+    background-color: #D9D9D9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    color: #201D22;
+    padding: 5px;
+    bottom: 0;
+    float: left;
+    margin-left: 15%;
+}
+.writting::placeholder{
+    color: black;
+}
+footer{
+    color: #D9D9D9;
+    padding: 25px;
+    position: relative;
+    width: 100vw;
+    background-color: #201D22;
+    bottom: 0;
+}
+.user_svg{
+    margin-left: 15px!important;
+}
+.center{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.block{
+    display: block;
+}
+.logout{
+    margin-left: 15vw; 
+    margin-right: 0;
+    color: #dc3545;
+    text-decoration: none;
+    font-size: +20px;
+}
