@@ -19,6 +19,7 @@ if(empty($_SESSION["id"])){
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="/css/Recurso.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 
 </head>
 <body>
@@ -73,56 +74,54 @@ if(empty($_SESSION["id"])){
             <h1>Catalogo informacion</h1>
             <h2>Opciones de edicion</h2>
         </text>
-        <button class="addp">Add product</button>
+        <!-- Trigger/Open The Modal -->
 
+<!-- The Modal -->
+        <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Add a Product:</h1>
+            <h3 class="subtitled_add">Complete the information:</h3>
+            <form class="form_add" action="" enctype="multipart/form-data">   
+                <input class="addi" type="text" name="name_add" placeholder="Title:"><br><br>
+                <textarea name="description" id="" cols="30" rows="10" placeholder="Description:"></textarea> <br><br>
+
+                <input  type="number" name="price_add" placeholder="Price:" ><br><br>
+                <label class="a" >Image Upload:</label><input type="file" class="file_add"><br><br>
+                <button class="cancelb">Cancel</button>
+                <button class="addb" type="submit">Add</button>
+
+            <form action="">
+                <label>
+            </form>
+        </div>
+
+        </div>
+        <!--El boton usa javascript del script.js para su funcionalidad de pop up -->
+        <button id="btn_add_product" class="addp ">Add product</button>     
+        <?php
+        include "../models/connection.php";
+        include "../controllers/controller_products.php";
+        
+        while($products=$sqlproducts->fetch_object()){
+          ?>
         <div class="card_seller">
-            <div class="image"></div>
+        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle">Hotel</h2>
-                <h3>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
+                <h2 class="tittle"><?php echo $products->name; ?></h2>
+                <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
-                <h2 class="price">$150.000</h2>
+                <h2 class="price">$<?php echo $products->price; ?></h2>
                 <button>Editar</button>
                 <button>Eliminar</button>
             </div>
         </div>
-        <div class="card_seller">
-            <div class="image"></div>
-            <text>
-                <h2 class="tittle">Hotel</h2>
-                <h3>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            </text>
-            <div class="ed">
-                <h2 class="price">$150.000</h2>
-                <button>Editar</button>
-                <button>Eliminar</button>
-            </div>
-        </div>
-        <div class="card_seller">
-            <div class="image"></div>
-            <text>
-                <h2 class="tittle">Hotel</h2>
-                <h3>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            </text>
-            <div class="ed">
-                <h2 class="price">$150.000</h2>
-                <button>Editar</button>
-                <button>Eliminar</button>
-            </div>
-        </div>
-        <div class="card_seller">
-            <div class="image"></div>
-            <text>
-                <h2 class="tittle">Hotel</h2>
-                <h3>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            </text>
-            <div class="ed">
-                <h2 class="price">$150.000</h2>
-                <button>Editar</button>
-                <button>Eliminar</button>
-            </div>
-        </div>
+        <?php
+        }?>
+        
         
 
     </div>
@@ -144,5 +143,8 @@ if(empty($_SESSION["id"])){
     </div>
     
     <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script s   rc="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

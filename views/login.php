@@ -33,7 +33,7 @@
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 <?php 
                 include "../models/connection.php";
-                include "../controllers/controller_login.php"
+                include "../controllers/controller_login.php";
 
                 ?>
                 <p class="text-white-50 mb-5">Please enter your login and password!</p>

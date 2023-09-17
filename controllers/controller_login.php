@@ -19,7 +19,6 @@ if(!empty($_POST{"btnlogin"})){//verifica que el boton de logi nse presiona
             echo "<div class='alert alert-danger'>Accedo denegado</div>";
         }
 
-
     }else{
         echo "Por favor completa los datos";
     }

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +16,48 @@
 <body>
     <div id="blur">
     <header>
-        <nav class="menu">
+    <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="index.html">Inicio</a></li>
-                <li><a class="menu-text" href="#">Acerca de</a></li>
-                <li><a class="menu-text" href="index.html">Catalogo</a></li>
-                <li><a class="menu-text" href="client-atention.html">Atencion al cliente</a></li>
+                <li><a class="menu-text" href="">Inicio</a></li>
+                <li><a class="menu-text" href="about.php">Acerca de</a></li>
+                <li><a class="menu-text" href="index.php">Catalogo</a></li>
+                <?php
+                  if(!empty($_SESSION["id"])){
+                    if($_SESSION["role"] == "Client")
+                    echo'
+                    <li><a class="menu-text" href="">Your products</a></li>
+                    ';
+                    if($_SESSION["role"] == "Seller"){
+                      echo '
+                      <li><a class="menu-text" href="products.php">Products</a></li>
+                      ';
+                    }
+                    echo'
+                    <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
+                  }
+                ?>
+                
+                <!--<li><a class="menu-text" href="client-atention.html">Atencion al cliente</a></li>-->
                 <!--<li class="log-in"><a class="menu-text" href="">Log in/Register</a></li>-->
             </ul>
-            <button class="log-in" id="login-btn"><a href="#">Log in/Register</a></button>
+            <?php
+            
+            if (empty($_SESSION["id"])){
+              echo'<button class="log-in" id="login-btn" onclick="window.location.href="login.php";" ><a href="login.php">Log in/  Register</a></button>';
+            }else{
+              
+              
+              echo'
+              <button class="log-in center" id="login-btn" onclick="window.location.href="account.php";" >
+                <img src = "css/user.svg" class"user_svg"/>
+                  <div class"block">
+                    <h1 class"center block">'.$_SESSION["role"].'</h1>
+                    <a class="block" href="account.php">'. $_SESSION["name"] .'  #'.$_SESSION["id"].'</a>
+                  </div>
+              </button>';
+            }
+            ?>
+            
         </nav>
     </header>
     <section id="acerca">

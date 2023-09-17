@@ -15,6 +15,7 @@ if(empty($_SESSION["id"])){
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="/css/Recurso.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
 
 </head>
 <body>
@@ -74,41 +75,23 @@ if(empty($_SESSION["id"])){
     <div class="catalogue">
         <h1>Catalogo</h1>
         <h2>Articulos recomendados</h2>
+        <?php
+        include "../models/connection.php";
+        include "../controllers/controller_products.php";
+        
+        while($products=$sqlproducts->fetch_object()){
+          ?>
         <div class="card">
-            <div class="image"></div>
-            <h2 class="tittle">Hotel</h2>
-            <h4>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            <h2 class="price">$150.000</h2>
+            <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+            <h2 class="tittle"><?php echo $products->name; ?></h2>
+            <h4><?php echo $products->description; ?>.</h3>
+            <h2 class="price">$<?php echo $products->price; ?></h2>
             <button>Solicitar</button>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-            <h2 class="tittle">Hotel</h2>
-            <h4>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            <h2 class="price">$150.000</h2>
-            <button>Solicitar</button>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-            <h2 class="tittle">Hotel</h2>
-            <h4>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            <h2 class="price">$150.000</h2>
-            <button>Solicitar</button>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-            <h2 class="tittle">Hotel</h2>
-            <h4>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            <h2 class="price">$150.000</h2>
-            <button>Solicitar</button>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-            <h2 class="tittle">Hotel</h2>
-            <h4>Nuestro plan de marketing para hoteles, respaldado por nuestra amplia experiencia en el sector, ofrece una solución integral para mejorar su posición en el mercado y atraer más huéspedes. Con un costo asequible, le brindamos la oportunidad de destacar en un mercado competitivo y maximizar su rentabilidad.</h3>
-            <h2 class="price">$150.000</h2>
-            <button>Solicitar</button>
-        </div>
+        </div><?php
+        }
+        ?>
+        
+        
 
     </div>
     <footer>

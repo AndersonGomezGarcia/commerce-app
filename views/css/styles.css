@@ -19,7 +19,7 @@ nav{
     top: 0;
     position: -webkit-sticky;
     width: 60.5vw;
-    height: 3.3vw;
+    height: 50px;
     position: sticky;
     z-index: 4;
     display: inline-flex;
@@ -97,7 +97,7 @@ nav ul li a{
     background-size: 200%;
     z-index: 3;
     font-weight: bolder;
-    height: 4vw;
+    height: 60px;
     font-size: large;
     font-family: Roboto;
     border: 1px solid transparent;
@@ -110,6 +110,7 @@ nav ul li a{
     margin: none;
     overflow: hidden;
     transition: 1s;
+    box-shadow: #201D22 0px     0px 20px;
 
 }
 .log-in:hover{
@@ -147,6 +148,7 @@ nav ul li a{
     width: 60vw;
     height: auto;
     min-height: 250px;
+    min-width: 800px;
     padding: 10px;
     margin: 20px;
     background-color: #201D22;
@@ -160,19 +162,19 @@ nav ul li a{
 }
 
 .card_seller .image{
-    margin: 20px 15px 20px 15px; 
-    width: 350px;
-    min-width: 350px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 25px;
-    display: inline-block;
-    vertical-align: middle;
-    transition: background-image 1s;
+    margin: 20px 15px 20px 15px!important; 
+    width: 350px!important;
+    min-width: 350px!important;
+    height: 200px!important;
+    overflow: hidden!important;
+    border-radius: 25px!important;
+    display: inline-block!important;
+    vertical-align: middle!important;
+    transition: background-image 1s!important;
     background-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(hotel.jpg);
-    background-size: 100%;
-    background-position: center;
-    transition: 1s;
+    background-size: 100%!important;
+    background-position: center!important;
+    transition: 1s!important;
 }
 .card_seller text{
     margin: 20px 50px 50px 20px;
@@ -201,8 +203,12 @@ button.addp{
     margin-right: 15vw;
     margin-top: 0;
 }
-.ed button, button.addp{
+button.addp:hover{
+    cursor: pointer;
+}
+.ed button, button.addp, .addb, .cancelb{
     margin-left: 20px;
+    color: black;
     color: #201D22;
     font-weight: bolder;
     font-size: large;
@@ -264,6 +270,14 @@ end uptades to products dot php
     background-position: center;
     transition: 1s;
 }
+
+.card .image img,.card_seller .image img{
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    height: 150%;
+}
+
 .card .image:hover{
     background-size: 135%;
     transition: 0.6s;
@@ -512,9 +526,103 @@ footer{
     display: block;
 }
 .logout{
-    margin-left: 15vw; 
+    margin-left: 14vw; 
     margin-right: 0;
     color: #dc3545;
     text-decoration: none;
     font-size: +20px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #D9D9D9;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 25px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /*asdasdasdasda*/
+
+  h3{
+    font-weight: 100;
+  }
+  /* subtitulo en el pop up de agregar items en los diferentes cruds*/
+  .subtitled_add{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 25px;
+  }
+
+  .form_add input, .form_add textarea{
+    width: 50%;
+    padding: .35em;
+    border: none;
+    font-size: 22px;
+    outline: none;
+    border-radius: 5px;
+    appearance: none;
+    background: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2));
+    border-bottom: .2em solid #376FFF;
+    color #376FFF;
+  }
+  .addi{
+	background: rgba(#E91E63, .2);
+}
+label.a{
+    font-size: 30px;
+    margin-left: 24.5%;
+    float: left;
+}
+
+.file_add{
+    background:transparent!important;
+    border: none!important;
+}
+.file_add::file-selector-button{
+    background: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2));
+    border: .2em solid #376FFF;
+    border-radius: 7px;
+    color #376FFF;
+}
+.addb{/*boton de agregar en crud*/
+    background: rgba(34, 160, 34, 0.288);
+    border: .2em solid rgb(34, 160, 34);
+    padding: 20px;
+}
+.cancelb{/*boton de agregar en crud*/
+    background: rgba(209, 0, 35, 0.37);
+    border: .2em solid rgb(209, 0, 35);
+    padding: 20px;
+
 }
