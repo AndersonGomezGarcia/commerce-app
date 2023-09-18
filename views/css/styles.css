@@ -549,7 +549,7 @@ footer{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 4; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -632,6 +632,7 @@ label.a{
     background: rgba(34, 160, 34, 0.288);
     border: .2em solid rgb(34, 160, 34);
     padding: 20px;
+    font-size: 22px;
 }
 .cancelb, .alert_d{/*boton de agregar en crud*/
     background: rgba(209, 0, 35, 0.37);
@@ -651,4 +652,7 @@ label.a{
 }
 .danger{
     color: rgb(182, 0, 30)!important;
+}
+.access{
+    color: rgb(34, 160, 34)!important;
 }
