@@ -24,9 +24,9 @@ function openModal(action,item,id) {
 
 // When the user clicks on <span> (x), close the modal
 
-function closeModal(id) {
-  var modal_update_product = document.getElementById("modal_update_product#"+id);
-  modal_update_product.style.display = "none";
+function closeModal(action,item,id) {
+  var modal = document.getElementById("modal_"+action+"_"+item+"#"+id);
+  modal.style.display = "none";
 }
 
 span.onclick = function() {
