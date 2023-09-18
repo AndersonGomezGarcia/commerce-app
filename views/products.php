@@ -77,34 +77,35 @@ if(empty($_SESSION["id"])){
         <!-- Trigger/Open The Modal -->
 
 <!-- The Modal -->
-        <div id="myModal" class="modal">
+        <div id="modal_add_product" class="modal">
 
   <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Add a Product:</h1>
-            <h3 class="subtitled_add">Complete the information:</h3>
-            <form class="form_add" action="" enctype="multipart/form-data">   
-                <input class="addi" type="text" name="name_add" placeholder="Title:"><br><br>
-                <textarea name="description" id="" cols="30" rows="10" placeholder="Description:"></textarea> <br><br>
-
-                <input  type="number" name="price_add" placeholder="Price:" ><br><br>
-                <label class="a" >Image Upload:</label><input type="file" class="file_add"><br><br>
-                <button class="cancelb">Cancel</button>
-                <button class="addb" type="submit">Add</button>
-
-            <form action="">
-                <label>
+          <span class="close">&times;</span>
+          <h1>Add a Product:</h1>
+          <h3 class="subtitled_add">Complete the information:</h3>
+          <form class="form_add" action="" enctype="multipart/form-data" method="POST" >   
+            <input class="addi" type="text" name="name_add" placeholder="Title:"><br><br>
+            <textarea name="description_add" id="" cols="30" rows="10" placeholder="Description:"></textarea> <br><br>
+            <input  type="number" name="price_add" placeholder="Price:" ><br><br>
+            <label class="a" >Image Upload:</label><input type="file" class="file_add" name="file_add" ><br><br>
+            <button class="cancelb">Cancel</button>
+            <button class="addb" name="registerbtn" type="submit" value="ok" >Add</button>
             </form>
         </div>
 
         </div>
+        <script>
+          var conteo =0;
+  
+        </script>
         <!--El boton usa javascript del script.js para su funcionalidad de pop up -->
         <button id="btn_add_product" class="addp ">Add product</button>     
         <?php
         include "../models/connection.php";
         include "../controllers/controller_products.php";
-        
+  
+        //esto es como un foreach para extrear los datos de products
         while($products=$sqlproducts->fetch_object()){
           ?>
         <div class="card_seller">
@@ -115,13 +116,60 @@ if(empty($_SESSION["id"])){
             </text>
             <div class="ed">
                 <h2 class="price">$<?php echo $products->price; ?></h2>
-                <button>Editar</button>
-                <button>Eliminar</button>
+                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
+                <button class="update_button"  onclick="openModal('update' , 'product' , <?= $products->id ?>)" >Update</button>
+                <button class="delete_button" onclick="openModalUpdate('delete','product' , <?= $products->id ?>)">Delete</button>
             </div>
         </div>
+        <!-- The Modal -->
+        <script>
+          var conteo = conteo + 1;
+          console.log(conteo)
+        </script>
+        <div id="modal_update_product#<?= $products->id ?>" class="modal">
+
+  <!-- Modal content -->
+        <div class="modal-content">
+          
+          <span class="close" onclick="closeModal(<?= $products->id ?>)">&times;</span>
+          <h1>Update a Product:</h1>
+          <h3 class="subtitled_add">Complete the information:</h3>
+          <div class="card_seller">
+        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+            <text>
+                <h2 class="tittle"><?php echo $products->name; ?></h2>
+                <h3><?php echo $products->description; ?>.</h3>
+            </text>
+            <div class="ed">
+                <h2 class="price">$<?php echo $products->price; ?></h2>
+
+            </div>
+        </div>
+          <form class="form_add" action="" enctype="multipart/form-data" method="POST" >   
+            <input class="addi" type="text" name="name_add" placeholder="Title:"><br><br>
+            <textarea name="description_add" id="" cols="30" rows="10" placeholder="Description:"></textarea> <br><br>
+            <input  type="number" name="price_add" placeholder="Price:" ><br><br>
+            <label class="a" >Image Upload:</label><input type="file" class="file_add" name="file_add" ><br><br>
+            <button class="cancelb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
+            <button class="addb" name="registerbtn" type="submit" value="ok" >Update</button>
+            </form>
+            
+        </div>
+        </div>
+        
         <?php
         }?>
-        
+        <!-- intento de cerrar mediante window.onclick-->
+        <script>
+          window.onclick = function(event) {
+          for (var i=1; i<=conteo;i+=1){
+            
+              if (event.target == document.getElementById("modal_update_product#"+i)) {
+                document.getElementById("modal_update_product#"+i).style.display = "none";
+              }
+            }
+          }
+        </script>
         
 
     </div>

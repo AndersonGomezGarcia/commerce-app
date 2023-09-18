@@ -171,7 +171,7 @@ nav ul li a{
     display: inline-block!important;
     vertical-align: middle!important;
     transition: background-image 1s!important;
-    background-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(hotel.jpg);
+    /*ackground-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(hotel.jpg);*/
     background-size: 100%!important;
     background-position: center!important;
     transition: 1s!important;
@@ -187,6 +187,10 @@ nav ul li a{
 }
 .ed{
     display: block;
+    width: 20%;
+    min-width: 20%;
+    margin-right: 0;
+    margin-left: auto;
 }
 .ed .price{
     margin: 20px 20px 0px 20px;
@@ -203,7 +207,7 @@ button.addp{
     margin-right: 15vw;
     margin-top: 0;
 }
-button.addp:hover{
+button.addp:hover,button.update_button:hover ,button.detele_button:hover{
     cursor: pointer;
 }
 .ed button, button.addp, .addb, .cancelb{
@@ -526,11 +530,13 @@ footer{
     display: block;
 }
 .logout{
-    margin-left: 14vw; 
-    margin-right: 0;
+    margin-left: 5vw; 
+    margin-right: 10vw;
+    float: right;
     color: #dc3545;
     text-decoration: none;
     font-size: +20px;
+    right: 10vw;
 }
 
 /* The Modal (background) */
@@ -556,6 +562,7 @@ footer{
     border: 1px solid #888;
     width: 80%;
     border-radius: 25px;
+    margin-bottom: 12%;
   }
   
   /* The Close Button */
@@ -594,7 +601,7 @@ footer{
     appearance: none;
     background: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2));
     border-bottom: .2em solid #376FFF;
-    color #376FFF;
+    color: #376FFF;
   }
   .addi{
 	background: rgba(#E91E63, .2);
@@ -609,20 +616,30 @@ label.a{
     background:transparent!important;
     border: none!important;
 }
-.file_add::file-selector-button{
+.file_add::file-selector-button {
     background: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2));
     border: .2em solid #376FFF;
     border-radius: 7px;
-    color #376FFF;
+    color: #376FFF;
 }
-.addb{/*boton de agregar en crud*/
+.addb, .alert_a{/*boton de agregar en crud*/
     background: rgba(34, 160, 34, 0.288);
     border: .2em solid rgb(34, 160, 34);
     padding: 20px;
 }
-.cancelb{/*boton de agregar en crud*/
+.cancelb, .alert_d{/*boton de agregar en crud*/
     background: rgba(209, 0, 35, 0.37);
     border: .2em solid rgb(209, 0, 35);
     padding: 20px;
-
+    width: auto;
+    color: rgb(66, 0, 11);
+    font-size: 22px;
+}
+.alert, .alert_a{
+    width: 10vw;
+    height: auto;
+    vertical-align: middle;
+    text-align: center;
+    align-content: center;
+    margin: auto;
 }
