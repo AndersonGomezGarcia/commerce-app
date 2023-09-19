@@ -30,7 +30,7 @@ if(empty($_SESSION["id"])){
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
-                    <li><a class="menu-text" href="">Your products</a></li>
+                    <li><a class="menu-text" href="purchases.php">Your products</a></li>
                     ';
                     if($_SESSION["role"] == "Seller"){
                       echo '
@@ -53,7 +53,7 @@ if(empty($_SESSION["id"])){
               
               
               echo'
-              <button class="log-in center" id="login-btn" onclick="window.location.href="account.php";" >
+              <button class="log-in center" id="login-btn" onclick="window.location.href="./account.php";" >
                 <img src = "css/user.svg" class"user_svg"/>
                   <div class"block">
                     <h1 class"center block">'.$_SESSION["role"].'</h1>
@@ -80,6 +80,7 @@ if(empty($_SESSION["id"])){
         include "../controllers/controller_products.php";
         include "../controllers/controller_purchases.php";
         
+        
         while($products=$sqlproducts->fetch_object()){
           ?>
           <!-- Aca empieza el for each de la lista de products---------------------------------------------------------------->
@@ -98,7 +99,7 @@ if(empty($_SESSION["id"])){
   <!-- Modal content Solicitar-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('add','purchase',<?= $products->id ?>)">&times;</span>
+          <span class="close" onclick="closeModal('add','purchase','<?= $products->id ?>')">&times;</span>
           <h1 class="access">Buy a Product:</h1>
           <h3 class="subtitled_add access">Are you sure of buy  this item?:</h3>
           <div class="card_seller alert">
@@ -118,8 +119,9 @@ if(empty($_SESSION["id"])){
           <input type="hidden" value="<?=$_SESSION["id"]?>" name="id_user" >  
             <br><br>
             <button class="cancelb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
-            <button class="addb" name="add_purchase_btn" type="submit" value="ok" >Buy</button>
-            </form>
+
+            <button class="addb" name="add_purchase_btn" type="submit" value="ok">Buy</button>
+          </form>
             
         </div>
         </div>

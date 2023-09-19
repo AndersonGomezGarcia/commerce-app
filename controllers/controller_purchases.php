@@ -1,25 +1,45 @@
 <?php
+$id_user=$_SESSION["id"];
+$clients=$connection->query("select * from clients where id_user ='$id_user' ");
+$id_client=$clients->fetch_array()[0];
+$sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
+echo '<script>console.log("aaaaaaaaaaaaaaa");</script>';
 
 if(!empty($_POST["add_purchase_btn"])){
-    
+    echo '<div class="alert_a alert-success">Purchase create correctly (Your products )</div>';
+    echo '<script>console.log("aaaaaaaaaaaaaaa");</script>';
     $id_product=$_POST["id_product"];
     $valuepaid=$_POST["value_product"];
     $payment = $connection->query("INSERT INTO payments (id, valuepaid, halfpayment, accreditationdate) VALUES (null, '$valuepaid', null, null)");
     $payment_id =mysqli_insert_id($connection);
-    $id_user=$_POST["id_user"];
-    $clients=$connection->query("select * from clients where id_user = '$id_user'");
-    $id_client=$clients->fetch_array()[0];
+    
 
     $date = getdate();
     $datep ="". $date['mday']."/". $date['mon']."/". $date['year']."//". $date['hours'].":".$date['minutes']."::".$date['seconds']."";
 
     $purchaseInsert = $connection->query(" insert into purchases(id, paymentdate,  status, finishdate, id_payment, id_developer, id_product, id_seller, id_client) VALUES (null, '$datep', 'Todo', null,'$payment_id', null,'$id_product', null, '$id_client')");
     if($purchaseInsert){
-        echo '<div class="alert_a alert-success">Product create correctly (reload page "F5" )</div>';
+        /*echo '<script>(function (){
+            var not=function(){
+                window.history.replaceState(null, null, window.location.pathname);
+            }
+            setTimeout(not, 0)
+        }())</script>';*/
+        echo '<div class="alert_a alert-success">Purchase create correctly (Your products )</div>';
     }else{
-        echo '<div class="alert_d alert-success">Product cannot create correctly (reload page "F5" )</div>';
+        echo '<div class="alert_d alert-success">Product cannot create correctly</div>';
     }
 
 }
+if(!empty($_POST["deletePurchasebtn"])){
+    $id=$_POST["id_delete"];
+    $sql = $connection->query(" delete from purchases where purchases.id='$id' ");
 
+
+
+
+}
+function getProduct () {
+    $product= $GLOBALS["connection"]->query("select * from products where products.id = '$purchases->id_product'");
+}
 ?>

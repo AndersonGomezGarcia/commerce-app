@@ -104,6 +104,7 @@ if(empty($_SESSION["id"])){
         <?php
         include "../models/connection.php";
         include "../controllers/controller_products.php";
+        
 
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products

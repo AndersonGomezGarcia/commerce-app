@@ -7,10 +7,13 @@ if(!empty($_POST["signup"])){//el nombre del boton que hace click para submit po
         $email = $_POST["email"];
         $password = $_POST["password"];
         $role = "Client";
-
         $sql=$connection->query("insert into users(name, email, password, role)values('$name','$email','$password','$role')");//hace la consulta sql
         if ($sql==1){//verifica si sql retorna algun valor
             echo '<div class="alert alert-success">User create correctly</div>';
+            $user=$connection->query(" select * from users where email= '$email' and password='$password' ");
+            if ($dates=$user->fetch_object()){
+                $client=$connection->query("INSERT INTO `clients` (`id`, `paymentmethod`, `id_user`) VALUES (NULL, NULL, '$dates->id')");
+            }
         }else{
             echo '<div class="alert alert-danger">User cannot register</div>';
         }
