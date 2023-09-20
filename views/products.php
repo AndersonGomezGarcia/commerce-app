@@ -36,10 +36,15 @@ if(empty($_SESSION["id"])){
                     echo'
                     <li><a class="menu-text" href="">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller"){
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){
                       echo '
                       <li><a class="menu-text" href="products.php">Products</a></li>
+                      <li><a class="menu-text" href="purchases.php">Purchases</a></li>
                       ';
+                      if($_SESSION["role"] == "Admin"){
+                        echo '
+                      <li><a class="menu-text" href="users.php">Users</a></li>';
+                      }
                     }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';

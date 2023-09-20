@@ -37,15 +37,11 @@ if(empty($_SESSION["id"])){
                     echo'
                     <li><a class="menu-text" href="">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller" or $_SESSION["role"] == "Admin"){
+                    if($_SESSION["role"] == "Seller"){
                       echo '
                       <li><a class="menu-text" href="products.php">Products</a></li>
                       
                       ';
-                      if($_SESSION["role"] == "Admin"){
-                        echo '
-                      <li><a class="menu-text" href="users.php">Users</a></li>';
-                      }
                     }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
@@ -92,7 +88,7 @@ if(empty($_SESSION["id"])){
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
-        while($purchases=$allsqlpurchases->fetch_object()){
+        while($purchases=$sqlpurchases->fetch_object()){
             $product= $connection->query("select * from products where products.id = '$purchases->id_product'");
             
            
@@ -105,7 +101,7 @@ if(empty($_SESSION["id"])){
         <div class="card_seller">
         <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle">Purchase#<?= $purchases->id ?> of Cliente #<?= $purchases->id_client?>:  <?php echo $products->name; ?></h2>
+                <h2 class="tittle">Purchase#<?= $purchases->id ?>:  <?php echo $products->name; ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">

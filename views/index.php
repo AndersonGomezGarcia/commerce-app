@@ -30,12 +30,17 @@ if(empty($_SESSION["id"])){
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
-                    <li><a class="menu-text" href="purchases.php">Your products</a></li>
+                    <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller"){
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){
                       echo '
                       <li><a class="menu-text" href="products.php">Products</a></li>
+                      <li><a class="menu-text" href="purchases.php">Purchases</a></li>
                       ';
+                      if($_SESSION["role"] == "Admin"){
+                        echo '
+                      <li><a class="menu-text" href="users.php">Users</a></li>';
+                      }
                     }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
@@ -68,13 +73,13 @@ if(empty($_SESSION["id"])){
     <div class="front-page">
         <div class="text">
             <h1>Digit Col</h1>
-            <h2>Ofrecemos servicios y productos digitales de alta calidad, diseñados para cumplir con los más altos estándares.</h2>
+            <h2>We offer high-quality digital products and services, designed to meet the highest standards.</h2>
         </div>
     </div>
     <div class="front-two"></div>
     <div class="catalogue">
-        <h1>Catalogo</h1>
-        <h2>Articulos recomendados</h2>
+        <h1>Catalogue</h1>
+        <h2>Articles recomendates</h2>
         <?php
         include "../models/connection.php";
         include "../controllers/controller_products.php";

@@ -42,11 +42,30 @@ nav ul li{
 }
 
 nav ul li a{
+
     display: inline-flex;
     color: #CDCDCD;
     text-decoration: none;
     z-index: 5;
+    transition: 0.7s;
+    font-size: 16px;
+    padding:9px;
+    margin-top: -9px;
+    border-radius: 5px;
+    background-size: 220% 220%;
+    background-position: 100% 100%;
+    
 
+}
+nav ul li a:HOVER{
+    color: #131214;
+    font-weight: 700;
+    transition: 0.5s;
+    font-size: 15px;
+    background: linear-gradient(to right ,#376FFF,#A144FF,#201D22,#201D22);
+    background-size: 400% 400%;
+    background-position: 0% 0%;
+ 
 }
 .front-page{
     width: 100%;
@@ -64,6 +83,10 @@ nav ul li a{
     color: white;
     margin: 0px 110px 0 140px;
     width: calc(66.75vw - 250px);
+}
+.front-page .text h2{
+    font-weight: 100!important;
+
 }
 .front-page .text h1{
     color: #201D22;
@@ -113,14 +136,16 @@ nav ul li a{
     padding: none;
     margin: none;
     overflow: hidden;
-    transition: 1s;
+    transition: 0.4s;
     box-shadow: #201D22 0px     0px 20px;
 
 }
 .log-in:hover{
     background-position: 100% 100%;
-    transition: 0.6s;
+    transition: 0.3s;
     cursor: pointer;
+    height: 70px;
+    padding-top: 10px;
 }
 .log-in a{
     text-decoration: none;
@@ -206,28 +231,35 @@ nav ul li a{
 }
 
 button.addp{
-    padding: 28px!important;
+    padding: 27px!important;
     float: right;
     margin-right: 15vw;
     margin-top: 0;
 }
-button.addp:hover,button.update_button:hover ,button.delete_button:hover{
-    cursor: pointer;
-}
+
 .ed button, button.addp, .addb, .cancelb{
     margin-left: 20px;
     color: black;
     color: #201D22;
     font-weight: bolder;
     font-size: large;
-    padding: 15px;
+    padding: 12px;
     background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
     background-size: 200%;
     border: none;
     border-radius: 8px;
+    background-position: 100% 100%;
     transition: 1s;
 }
+button.addp:hover,button.update_button:hover ,button.delete_button:hover{
+    cursor: pointer;
+    background-position: 200% 00%;
+    transition: 0.3s;
+    cursor: pointer;
+    color: #000;
 
+
+}
 .card_seller h3{
     font-style: normal;
     font-weight: 100;
@@ -291,6 +323,12 @@ end uptades to products dot php
     transition: 0.6s;
 }
 
+.subtittle{
+    margin-left: 15px;
+    text-align: left;
+    font-size: xx-large;
+    margin-top: 17px;
+}
 .card .tittle{
     margin-left: 15px;
     text-align: left;
@@ -314,7 +352,7 @@ end uptades to products dot php
     font-weight: bolder;
     font-size: large;
     width: 100px;
-    padding: 15px;
+    padding: 12px;
     margin-right: 50px;
     background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
     background-size: 200%;
@@ -330,6 +368,7 @@ end uptades to products dot php
     background-position: 100%;
     transition: 0.6s;
     cursor: pointer;
+    color: #000;
 
 }
 #login-container {
@@ -536,13 +575,28 @@ footer{
     display: block;
 }
 .logout{
-    margin-left: 5vw; 
+    margin-left: 1vw; 
     margin-right: 10vw;
     float: right;
     color: #dc3545;
     text-decoration: none;
     font-size: +20px;
     right: 10vw;
+    transition: 0.4s;
+
+    width: auto;
+    height: auto;
+    padding: 9px;
+    border-radius: 3px;
+    margin-top: -10px;
+}
+.logout:hover{
+    
+    font-weight: 700;
+    font-size: 21px;
+    transition: 0.3s;
+    border: #dc3545 solid 1px ;
+    background-color: #fbcacf;
 }
 
 /* The Modal (background) */
@@ -609,6 +663,9 @@ footer{
     border-bottom: .2em solid #376FFF;
     color: #376FFF;
   }
+  .form_add input.list{
+    border: .2em solid #376FFF;
+  }
   .addi{
 	background: rgba(#E91E63, .2);
 }
@@ -653,6 +710,26 @@ label.a{
 .danger{
     color: rgb(182, 0, 30)!important;
 }
-.access{
+.access, .colorgreen{
     color: rgb(34, 160, 34)!important;
+}
+.colorblue{
+    color: #376FFF;
+    float: right;
+    margin-left: 50px;
+}
+.colorfuxy{
+    color: #A144FF;
+}
+.colorfuxy, .colorblue, .colorgreen{
+    display: inline;
+    width: fit-content;
+}
+.bigsize{
+    font-size: 50px!important;
+}
+text.user{
+    margin-top: 50px;
+    margin-left: 75px;
+    width: 77%;
 }

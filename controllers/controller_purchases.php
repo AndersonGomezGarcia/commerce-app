@@ -1,13 +1,14 @@
 <?php
-$id_user=$_SESSION["id"];
-$clients=$connection->query("select * from clients where id_user ='$id_user' ");
-$id_client=$clients->fetch_array()[0];
-$sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
-echo '<script>console.log("aaaaaaaaaaaaaaa");</script>';
+if ($_SESSION["role"] == "Client"){
+    $id_user=$_SESSION["id"];
+    $clients=$connection->query("select * from clients where id_user ='$id_user' ");
+    $id_client=$clients->fetch_array()[0];
+    $sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
+}
+
+$allsqlpurchases = $connection->query(" select * from purchases ");
 
 if(!empty($_POST["add_purchase_btn"])){
-    echo '<div class="alert_a alert-success">Purchase create correctly (Your products )</div>';
-    echo '<script>console.log("aaaaaaaaaaaaaaa");</script>';
     $id_product=$_POST["id_product"];
     $valuepaid=$_POST["value_product"];
     $payment = $connection->query("INSERT INTO payments (id, valuepaid, halfpayment, accreditationdate) VALUES (null, '$valuepaid', null, null)");
@@ -34,6 +35,8 @@ if(!empty($_POST["add_purchase_btn"])){
 if(!empty($_POST["deletePurchasebtn"])){
     $id=$_POST["id_delete"];
     $sql = $connection->query(" delete from purchases where purchases.id='$id' ");
+    header("location: purchases_client.php");
+    echo '<div class="alert_d alert-success">Purchase deleted correctly (Your products)</div>';
 
 
 
