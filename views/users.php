@@ -149,15 +149,19 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" >   
-            <input class="addi lis" type="hidden" value="<?= $users->id ?>" name="id_update_user" placeholder="Title:">
-            <input class="list" select="roles" name="browser" id="browser"><!-- list= hace referencia al la datalist que usara como datos-->
-            <select id="roles">
-              <option name="Client">Client</option>
-              <option name="Seller">Seller</option>
-              <option name="Developer">Developer</option>
-            </select>
+            <input type="hidden" value="<?= $users->id ?>" name="id_update_user">
+
+            <input type="hidden" value="<?= $users->role ?>" name="old_role">
+            
+            <labe class="fz">Rol:</label>
+            <input type="hidden" select="roles" name="roles" id="browser"><!-- list= hace referencia al la datalist que usara como datos-->
+            <select id="roles" name="roles" >
+              <option name="Client" value="Client">Client</option>
+              <option name="Seller" value="Seller">Seller</option>
+              <option name="Developer" value="Developer">Developer</option>
+            </select><br><br>
             <button class="cancelb" onclick="closeModal('update','user',<?= $users->id ?>)">Cancel</button>
-            <button class="addb" name="updatebtn" type="submit" value="ok" >Update role</button>
+            <button class="addb" name="updateRolebtn" type="submit" value="ok" >Update role</button>
             </form>
             
         </div>

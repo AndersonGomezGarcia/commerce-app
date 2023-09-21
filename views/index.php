@@ -23,8 +23,8 @@ if(empty($_SESSION["id"])){
     <header>
         <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Inicio</a></li>
-                <li><a class="menu-text" href="about.php">Acerca de</a></li>
+                <li><a class="menu-text" href="">Home</a></li>
+                <li><a class="menu-text" href="about.php">About</a></li>
                 <li><a class="menu-text" href="">Catalogo</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
@@ -39,7 +39,8 @@ if(empty($_SESSION["id"])){
                       ';
                       if($_SESSION["role"] == "Admin"){
                         echo '
-                      <li><a class="menu-text" href="users.php">Users</a></li>';
+                      <li><a class="menu-text" href="users.php">Users</a></li>;
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>';
                       }
                     }
                     echo'
@@ -79,7 +80,7 @@ if(empty($_SESSION["id"])){
     <div class="front-two"></div>
     <div class="catalogue">
         <h1>Catalogue</h1>
-        <h2>Articles recomendates</h2>
+        <h2>Recomendates articles</h2>
         <?php
         include "../models/connection.php";
         include "../controllers/controller_products.php";

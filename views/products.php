@@ -130,13 +130,11 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
         <!-- The Modal update para products--------------------->
-        <script>
-          var conteo = conteo + 1;
-          console.log(conteo)
-        </script>
+
+         <!-- Modal content update ----------------------->
         <div id="modal_update_product#<?= $products->id ?>" class="modal">
 
-  <!-- Modal content update ----------------------->
+ 
         <div class="modal-content">
           
           <span class="close" onclick="closeModal( 'update','product',<?= $products->id ?>)">&times;</span>

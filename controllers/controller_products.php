@@ -55,6 +55,8 @@ if(!empty($_POST["updatebtn"])){
         echo '<div class="alert_d alert-danger">Product cannot update</div>';
     }else{
         $sql = $connection->query(" update products set description='$description', name = '$name' , price = '$price', discount = NULL, multimedia = '$image' where products.id=$id");
+        
+        header('location:../views/products.php');
         echo '<div class="alert_a alert-success">Product create correctly (reload page "F5" )</div>';
 
     }
@@ -80,9 +82,6 @@ if(!empty($_POST["updatebtn"])){
 if(!empty($_POST["deletebtn"])){
     $id=$_POST["id_delete"];
     $sql = $connection->query(" delete from products where products.id='$id' ");
-
-
-
 
 }
 

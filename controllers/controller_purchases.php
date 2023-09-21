@@ -1,10 +1,11 @@
 <?php
-if ($_SESSION["role"] == "Client"){
-    $id_user=$_SESSION["id"];
-    $clients=$connection->query("select * from clients where id_user ='$id_user' ");
-    $id_client=$clients->fetch_array()[0];
-    $sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
-}
+if(!empty($_SESSION["id"])){
+    if ($_SESSION["role"] == "Client"){
+        $id_user=$_SESSION["id"];
+        $clients=$connection->query("select * from  clients where id_user ='$id_user' ");
+        $id_client=$clients->fetch_array()[0];
+        $sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
+}}
 
 $allsqlpurchases = $connection->query(" select * from purchases ");
 

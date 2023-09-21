@@ -144,8 +144,9 @@ nav ul li a:HOVER{
     background-position: 100% 100%;
     transition: 0.3s;
     cursor: pointer;
-    height: 70px;
-    padding-top: 10px;
+    height: 75px;
+    padding-top: 15px;
+    box-shadow: #A144FF 0px     0px 10px;
 }
 .log-in a{
     text-decoration: none;
@@ -187,7 +188,7 @@ nav ul li a:HOVER{
     display: inline-flex;
 
     position: relative;
-    transition: 1s;
+    transition: 0.7s;
 }
 
 .card_seller .image{
@@ -282,6 +283,7 @@ button.addp:hover,button.update_button:hover ,button.delete_button:hover{
 /*--------------------------------------------------------
 end uptades to products dot php
 --------------------------------------------------------------*/
+
 .card{
     width: 450px;
     height: 550px;
@@ -294,8 +296,15 @@ end uptades to products dot php
     display: inline-flex;
     flex-direction: column;
     position: relative;
-    transition: 1s;
+    transition: 0.7s;
 }
+
+.card:hover, .card_seller:hover{
+    transform: translateY(-10px);
+    transition: 0.3s;
+    box-shadow: 0 0 25px 0 #A144FF
+}
+
 .card .image{
     margin: 20px 15px 20px 15px; 
     width: calc(100% - 30px);
@@ -663,12 +672,23 @@ footer{
     border-bottom: .2em solid #376FFF;
     color: #376FFF;
   }
-  .form_add input.list{
-    border: .2em solid #376FFF;
+  .form_add input.list, select#roles{
+    border: .2em solid #376FFF !important;
+    border-radius: 5px!important;
+    padding: .35em!important;
+    font-size: 22px!important;
+  }
+  select#roles option{
+    border: .2em solid #376FFF !important;
   }
   .addi{
 	background: rgba(#E91E63, .2);
 }
+.fz{
+    font-size: 22px;
+}
+
+
 label.a{
     font-size: 30px;
     margin-left: 24.5%;
@@ -732,4 +752,10 @@ text.user{
     margin-top: 50px;
     margin-left: 75px;
     width: 77%;
+}
+/* todo lo referente a account.php*/
+
+.card_account{
+    display: flex;
+    margin: 6% 20% 6% 20%;
 }
