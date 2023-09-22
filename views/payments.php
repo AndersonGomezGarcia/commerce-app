@@ -77,7 +77,7 @@ if(empty($_SESSION["id"])){
     </header>
     <div class="products catalogue block ">
         <text class="tittlep">
-            <h1>Info about of all purchases</h1>
+            <h1>Info about of all payments</h1>
             <h2>Options to manage it</h2>
         </text>
         <!-- Trigger/Open The Modal -->
@@ -88,11 +88,12 @@ if(empty($_SESSION["id"])){
         include "../models/connection.php";
         include "../controllers/controller_products.php";
         include "../controllers/controller_purchases.php";
+        include "../controllers/controller_payments.php";
 
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
-        while($purchases=$allsqlpurchases->fetch_object()){
+        while($payments=$allsqlpayments->fetch_object()){
             $product= $connection->query("select * from products where products.id = '$purchases->id_product'");
             
            
@@ -105,7 +106,7 @@ if(empty($_SESSION["id"])){
         <div class="card_seller">
         <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle">Purchase#<?= $purchases->id ?> of Cliente #<?= $purchases->id_client?>:  <?php echo $products->name; ?></h2>
+                <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $payments->id_client?>:  <?php echo $products->name; ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
