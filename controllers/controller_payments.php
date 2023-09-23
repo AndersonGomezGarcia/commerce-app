@@ -1,5 +1,7 @@
 <?php
-$allsqlpayments = $connection->query(" select * from payments ");
+$allsqlpayments = $connection->query(" select * from payments 
+
+");
 
 
 ?>

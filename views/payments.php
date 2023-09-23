@@ -94,12 +94,10 @@ if(empty($_SESSION["id"])){
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
         while($payments=$allsqlpayments->fetch_object()){
-            $product= $connection->query("select * from products where products.id = '$purchases->id_product'");
+
             
-           
-            while($prod=$product->fetch_object()){
-                $products = $prod;
-            }
+            $purchase = $connection->query("select * from purchases where purchases.id_payment = '$payments->id'");
+            $products = $connection->query("select * from products where products.id = '$purchase->id_product'");
             
 
           ?>
@@ -110,7 +108,7 @@ if(empty($_SESSION["id"])){
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
-                <h2 class="price">$<?php echo $products->price; ?></h2>
+                <h2 class="price">$<?php echo $payments->valuepaid; ?></h2>
                 <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
                 <button class="delete_button" onclick="openModal('aprove','purchase',<?= $products->id ?>)">Aprove</button>
                 <button class="delete_button" onclick="openModal('delete','purchase',<?= $products->id ?>)">Delete</button>
