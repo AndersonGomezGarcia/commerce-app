@@ -35,7 +35,12 @@ if(!empty($_POST["add_purchase_btn"])){
 }
 if(!empty($_POST["deletePurchasebtn"])){
     $id=$_POST["id_delete"];
+    $id=$_POST["id_payment"];
     $sql = $connection->query(" delete from purchases where purchases.id='$id' ");
+    if($sql){
+        $sql = $connection->query(" delete from payments where payments.id='$id_payment' ");
+    }
+    
     header("location: purchases_client.php");
     echo '<div class="alert_d alert-success">Purchase deleted correctly (Your products)</div>';
 

@@ -137,6 +137,7 @@ if(empty($_SESSION["id"])){
         </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
           <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+          <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" placeholder="Title:">  
             <br><br>
             <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
             <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok" >Delete</button>

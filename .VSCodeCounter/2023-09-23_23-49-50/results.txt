@@ -1,0 +1,59 @@
+Date : 2023-09-23 23:49:50
+Directory : c:\xampp\htdocs\commerce-app
+Total : 25 files,  2358 codes, 72 comments, 350 blanks, all 2780 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| PHP        |         19 |      1,585 |         52 |        271 |      1,908 |
+| CSS        |          1 |        698 |         14 |         53 |        765 |
+| JavaScript |          1 |         26 |          6 |         17 |         49 |
+| XML        |          2 |         25 |          0 |          2 |         27 |
+| Markdown   |          2 |         24 |          0 |          7 |         31 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                              | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                 |         25 |      2,358 |         72 |        350 |      2,780 |
+| . (Files)                                                         |          1 |         23 |          0 |          7 |         30 |
+| controllers                                                       |          8 |        185 |         16 |         40 |        241 |
+| models                                                            |          1 |          4 |          2 |          2 |          8 |
+| views                                                             |         15 |      2,146 |         54 |        301 |      2,501 |
+| views (Files)                                                     |         12 |      1,423 |         40 |        246 |      1,709 |
+| views\css                                                         |          3 |        723 |         14 |         55 |        792 |
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                          | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp\htdocs\commerce-app\README.md                            | Markdown   |         23 |          0 |          7 |         30 |
+| c:\xampp\htdocs\commerce-app\controllers\README.md                | Markdown   |          1 |          0 |          0 |          1 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_login.php     | PHP        |         22 |          2 |          3 |         27 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_payments.php  | PHP        |          6 |          0 |          3 |          9 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_products.php  | PHP        |         67 |          8 |         15 |         90 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_purchases.php | PHP        |         37 |          6 |         11 |         54 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_signoff.php   | PHP        |          5 |          0 |          1 |          6 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_signup.php    | PHP        |         22 |          0 |          0 |         22 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_users.php     | PHP        |         25 |          0 |          7 |         32 |
+| c:\xampp\htdocs\commerce-app\models\connection.php                | PHP        |          4 |          2 |          2 |          8 |
+| c:\xampp\htdocs\commerce-app\views\about.php                      | PHP        |        109 |          0 |         10 |        119 |
+| c:\xampp\htdocs\commerce-app\views\account.php                    | PHP        |         78 |          1 |         11 |         90 |
+| c:\xampp\htdocs\commerce-app\views\css\person.svg                 | XML        |         14 |          0 |          1 |         15 |
+| c:\xampp\htdocs\commerce-app\views\css\styles.css                 | CSS        |        698 |         14 |         53 |        765 |
+| c:\xampp\htdocs\commerce-app\views\css\user.svg                   | XML        |         11 |          0 |          1 |         12 |
+| c:\xampp\htdocs\commerce-app\views\development_task.php           | PHP        |          0 |          0 |          1 |          1 |
+| c:\xampp\htdocs\commerce-app\views\index.php                      | PHP        |        138 |          1 |         27 |        166 |
+| c:\xampp\htdocs\commerce-app\views\login.php                      | PHP        |         61 |          3 |         18 |         82 |
+| c:\xampp\htdocs\commerce-app\views\payments.php                   | PHP        |        189 |          6 |         35 |        230 |
+| c:\xampp\htdocs\commerce-app\views\products.php                   | PHP        |        202 |          5 |         27 |        234 |
+| c:\xampp\htdocs\commerce-app\views\purchases.php                  | PHP        |        184 |          5 |         28 |        217 |
+| c:\xampp\htdocs\commerce-app\views\purchases_client.php           | PHP        |        153 |          5 |         24 |        182 |
+| c:\xampp\htdocs\commerce-app\views\script.js                      | JavaScript |         26 |          6 |         17 |         49 |
+| c:\xampp\htdocs\commerce-app\views\signup.php                     | PHP        |         78 |          3 |         21 |        102 |
+| c:\xampp\htdocs\commerce-app\views\users.php                      | PHP        |        205 |          5 |         27 |        237 |
+| Total                                                             |            |      2,358 |         72 |        350 |      2,780 |
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+

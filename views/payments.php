@@ -95,16 +95,25 @@ if(empty($_SESSION["id"])){
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
         while($payments=$allsqlpayments->fetch_object()){
 
-            
-            $purchase = $connection->query("select * from purchases where purchases.id_payment = '$payments->id'");
-            $products = $connection->query("select * from products where products.id = '$purchase->id_product'");
+          
+            $purchase = ($connection->query("select * from purchases where id_payment = '$payments->id'"))->fetch_object();
+            //echo '<h1>hola</h1>';
+            $product = $connection->query("select * from products where id = '$purchase->id_product' ");
+              while($prod=$product->fetch_object()){
+                $products = $prod;
+            }
+
+
+
+                      
+
             
 
           ?>
-        <div class="card_seller">
-        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+          <div class="card_seller">
+          <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $payments->id_client?>:  <?php echo $products->name; ?></h2>
+                <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  <?php echo $products->name ?> of client #<?= $purchase->id_client ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
@@ -120,25 +129,30 @@ if(empty($_SESSION["id"])){
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('delete','purchase',<?= $products->id ?>)">&times;</span>
-          <h1 class="danger">Delete a Product:</h1>
-          <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
+          <span class="close" onclick="closeModal('aprove','purchase',<?= $products->id ?>)">&times;</span>
+          <h1 class="access">Aprove a Payment:</h1>
+          <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
           <div class="card_seller alert">
         <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle">Purchase#<?= $purchases->id ?>: <?php echo $products->name; ?></h2>
+            <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  <?php echo $products->name ?> of client #<?= $purchase->id_client ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
                 <h2 class="price">$<?php echo $products->price; ?></h2>
 
             </div>
-        </div>
-          <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-          <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+        </div><br>
+        
+          <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
+            <input class="addi" type="hidden" value="<?= $payments->id ?>" name="id_update_purchase" placeholder="Title:">  
+            <label>Method of payment</label>
+            <input name="Method of payment" class="" value="" type="text">
             <br><br>
-            <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
-            <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok" >Delete</button>
+            <label>Payment Date</label>
+            <input name="Method of payment" class="date" value="" type="date"><br><br>
+            <button class="cancelb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
+            <button class="addb" name="aprovePurchasebtn" type="submit" value="ok" >Delete</button>
             </form>
             
         </div>
@@ -165,7 +179,8 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-          <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+            <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+            
             <br><br>
             <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
             <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok" >Delete</button>

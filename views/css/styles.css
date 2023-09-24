@@ -759,3 +759,7 @@ text.user{
     display: flex;
     margin: 6% 20% 6% 20%;
 }
+.date{
+    width: 20%!important;
+    margin-right: 30%;
+}

@@ -40,7 +40,8 @@ if(empty($_SESSION["id"])){
                       if($_SESSION["role"] == "Admin"){
                         echo '
                       <li><a class="menu-text" href="users.php">Users</a></li>;
-                      <li><a class="menu-text" href="payments.php">Payments</a></li>';
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>;
+                      <li><a class="menu-text" href="development_task.php">tasks</a></li>';
                       }
                     }
                     echo'
