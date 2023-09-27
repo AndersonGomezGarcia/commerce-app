@@ -26,27 +26,29 @@ if(empty($_SESSION["id"])){
     <input type="hidden" name="id_user">
     <div id="blur">
     <header>
-        <nav class="menu">
+    <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Inicio</a></li>
-                <li><a class="menu-text" href="about.php">Acerca de</a></li>
-                <li><a class="menu-text" href="index.php">Catalogo</a></li>
+                <li><a class="menu-text" href="about.php">About</a></li>
+                <li><a class="menu-text" href="index.php">Catalog</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
-                    <li><a class="menu-text" href="">Your products</a></li>
+                    <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller" or $_SESSION["role"] == "Admin"){
-                      echo '
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){?>
                       <li><a class="menu-text" href="products.php">Products</a></li>
-                      
-                      ';
-                      if($_SESSION["role"] == "Admin"){
-                        echo '
-                      <li><a class="menu-text" href="users.php">Users</a></li>';
-                      }
-                    }
+                      <li><a class="menu-text" href="purchases.php">Purchases</a></li>
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>
+                      <?php
+                      if($_SESSION["role"] == "Admin"){?>
+    
+                      <li><a class="menu-text" href="users.php">Users</a></li>
+                      <li><a class="menu-text" href="development_tasks.php">tasks</a></li>';
+                     <?php }
+                    }elseif($_SESSION["role"] == "Developer"){?>
+                      echo'<li><a class="menu-text" href="developer_tasks.php">tasks</a></li>';
+                      <?php }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
                   }
@@ -63,7 +65,7 @@ if(empty($_SESSION["id"])){
               
               
               echo'
-              <button class="log-in center" id="login-btn" onclick="window.location.href="account.php";" >
+              <button class="log-in center" id="login-btn" onclick="window.location.href="./account.php";" >
                 <img src = "css/user.svg" class"user_svg"/>
                   <div class"block">
                     <h1 class"center block">'.$_SESSION["role"].'</h1>
@@ -102,13 +104,7 @@ if(empty($_SESSION["id"])){
               while($prod=$product->fetch_object()){
                 $products = $prod;
             }
-
-
-
-                      
-
             
-
           ?>
           <div class="card_seller">
           <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
@@ -119,17 +115,63 @@ if(empty($_SESSION["id"])){
             <div class="ed">
                 <h2 class="price">$<?php echo $payments->valuepaid; ?></h2>
                 <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-                <button class="delete_button" onclick="openModal('aprove','purchase',<?= $products->id ?>)">Aprove</button>
-                <button class="delete_button" onclick="openModal('delete','purchase',<?= $products->id ?>)">Delete</button>
+                <?php 
+            if($payments->method_payment == NULL){
+              ?><button class="accessButton" onclick="openModal('approve','purchase',<?= $products->id ?>)">Approve</button><?php
+            }else{?>
+              <button class="cautionButton" onclick="openModal('disapprove','purchase',<?= $products->id ?>)">Disapprove</button>
+              
+              <?php
+            }
+            ?>
+                <button class="dangerButton" onclick="openModal('delete','purchase',<?= $products->id ?>)">Delete</button>
             </div>
         </div>
+         <!-- modal disapprove---------------------------------------------------------->
+         <div id="modal_disapprove_purchase#<?= $products->id ?>" class="modal">
+
+          <!-- Modal content delete-------------------------------------- -->
+          <div class="modal-content">
+        
+            <span class="close" onclick="closeModal('disapprove','purchase',<?= $products->id ?>)">&times;</span>
+            <h1 class="access">Aprove a Payment:</h1>
+            <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
+            <div class="card_seller alert">
+          <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+            <text>
+              <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  <?php echo $products->name ?> of client #<?= $purchase->id_client ?></h2>
+              <h3><?php echo $products->description; ?>.</h3>
+            </text>
+          <div class="ed">
+              <h2 class="price">$<?php echo $products->price; ?></h2>
+
+          </div>
+      </div><br>
+      
+        <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
+          <input type="hidden" value="<?= $payments->id ?>" name="id_aprove_payment">    
+          <button class="cancelb" onclick="closeModal('disapprove','purchase',<?= $products->id ?>)">Cancel</button>
+          <?php 
+          if($payments->method_payment == NULL){
+            ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php
+            
+             }else{?>
+            <button class="addb crystalCautionButton" name="paymentDisapproveBtn" type="submit" value="ok" >Dispprove</button>
+            
+            <?php
+          }
+          ?>
+          </form>
+          
+      </div>
+      </div>
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_aprove_purchase#<?= $products->id ?>" class="modal">
+        <div id="modal_approve_purchase#<?= $products->id ?>" class="modal">
 
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('aprove','purchase',<?= $products->id ?>)">&times;</span>
+          <span class="close" onclick="closeModal('approve','purchase',<?= $products->id ?>)">&times;</span>
           <h1 class="access">Aprove a Payment:</h1>
           <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
           <div class="card_seller alert">
@@ -145,14 +187,23 @@ if(empty($_SESSION["id"])){
         </div><br>
         
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
-            <input class="addi" type="hidden" value="<?= $payments->id ?>" name="id_update_purchase" placeholder="Title:">  
+            <input type="hidden" value="<?= $payments->id ?>" name="id_aprove_payment">  
             <label>Method of payment</label>
-            <input name="Method of payment" class="" value="" type="text">
+            <input name="method_payment" class="" type="text" required>
             <br><br>
             <label>Payment Date</label>
-            <input name="Method of payment" class="date" value="" type="date"><br><br>
-            <button class="cancelb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
-            <button class="addb" name="aprovePurchasebtn" type="submit" value="ok" >Delete</button>
+            <input name="payment_date" class="date" type="date" required><br><br>
+            <button class="cancelb" onclick="closeModal('approve','purchase',<?= $products->id ?>)">Cancel</button>
+            <?php 
+            if($payments->method_payment == NULL){
+              ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php
+              
+               }else{?>
+              <button class="addb" name="paymentDisapproveBtn" type="submit" value="ok" >Dispprove</button>
+              
+              <?php
+            }
+            ?>
             </form>
             
         </div>

@@ -21,27 +21,29 @@ if(empty($_SESSION["id"])){
 <body>
     <div id="blur">
     <header>
-        <nav class="menu">
+    <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Inicio</a></li>
-                <li><a class="menu-text" href="about.php">Acerca de</a></li>
-                <li><a class="menu-text" href="index.php">Catalogue</a></li>
+                <li><a class="menu-text" href="about.php">About</a></li>
+                <li><a class="menu-text" href="index.php">Catalog</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
                     <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){
-                      echo '
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){?>
                       <li><a class="menu-text" href="products.php">Products</a></li>
                       <li><a class="menu-text" href="purchases.php">Purchases</a></li>
-                      ';
-                      if($_SESSION["role"] == "Admin"){
-                        echo '
-                      <li><a class="menu-text" href="users.php">Users</a></li>';
-                      }
-                    }
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>
+                      <?php
+                      if($_SESSION["role"] == "Admin"){?>
+    
+                      <li><a class="menu-text" href="users.php">Users</a></li>
+                      <li><a class="menu-text" href="development_tasks.php">tasks</a></li>';
+                     <?php }
+                    }elseif($_SESSION["role"] == "Developer"){?>
+                      <li><a class="menu-text" href="developer_tasks.php">tasks</a></li>';
+                      <?php }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
                   }
@@ -51,6 +53,7 @@ if(empty($_SESSION["id"])){
                 <!--<li class="log-in"><a class="menu-text" href="">Log in/Register</a></li>-->
             </ul>
             <?php
+
             
             if (empty($_SESSION["id"])){
               echo'<button class="log-in" id="login-btn" onclick="window.location.href="login.php";" ><a href="login.php">Log in/  Register</a></button>';
@@ -71,7 +74,11 @@ if(empty($_SESSION["id"])){
         </nav>
     </header>
 
+    <?php
 
+include "../models/connection.php";
+include "../controllers/controller_users.php";
+?>
     <div class="card_seller card_account">
             <text class="user" >
                 <h2 class="tittle bigsize"><div class="colorgreen" >id: #<?php echo $_SESSION["id"]; ?></div></h2>
@@ -79,12 +86,98 @@ if(empty($_SESSION["id"])){
                 <h2 class="subtittle"><div class="colorfuxy" >Email: </div> <div class="colorblue"><?php echo $_SESSION["email"]; ?></div></h2>
                 <h2 class="subtittle"><div class="colorfuxy" >Password: </div> <div class="colorblue"><?php echo $_SESSION["password"]; ?></div></h2>
                 <h2 class="subtittle"><div class="colorfuxy" >Role:</div> <div class="colorblue"> <?php echo $_SESSION["role"]; ?> </div> </h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Number Tel:</div> <div class="colorblue"> <?php echo $_SESSION["cellphone"]; ?> </div> </h2>
+              
             </text>
             <div class="ed">
                 <h2 class="price">Options</h2>
-                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-                <!--
-                <button class="update_button"  onclick="openModal('update' , 'user' , <?= $_SESSION["id"] ?>)" >change information Role</button>-->
-                <button class="delete_button" onclick="openModal('delete','user',<?= $_SESSION["id"]; ?>)">Delete</button>
+
+                <button class="accessButton" onclick="openModal('update','account',<?= $_SESSION["id"] ?>)">Update</button>
+                <button class="dangerButton" onclick="openModal('delete','account',<?= $_SESSION["id"] ?>)">Delete</button>
+                
             </div>
         </div>
+        <!-- The Modal update my account--------------------->
+      
+        <div id="modal_update_account#<?=  $_SESSION["id"] ?>" class="modal">
+
+  <!-- Modal content update ----------------------->
+          <div class="modal-content m_auto">
+          <center>
+          
+          <span class="close" onclick="closeModal( 'update','account',<?= $_SESSION["id"]  ?>)">&times;</span>
+          <h1>Update you User#<?= $_SESSION["id"] ?></h1>
+          <h3 class="subtitled_add">Choose a updates:</h3>
+          <div class="card_seller m_auto">
+            <text class="user" >
+                <h2 class="tittle bigsize"><div class="colorgreen" >id: #<?php echo $_SESSION["id"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Name:</div> <div class="colorblue"><?php echo $_SESSION["name"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Email: </div> <div class="colorblue"><?php echo $_SESSION["email"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Password: </div> <div class="colorblue"><?php echo $_SESSION["password"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Role:</div> <div class="colorblue"> <?php echo $_SESSION["role"]; ?> </div> </h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Number Tel:</div> <div class="colorblue"> <?php echo $_SESSION["cellphone"]; ?> </div> </h2>
+              
+            </text>
+        </div>
+       
+          <form class="form_add" action="" method="POST" >  
+            <br><br> 
+            <input type="hidden" value="<?= $_SESSION["id"] ?>" name="id_update_account" >
+            <input type="text" value="" name="name" placeholder="New Name" ><br><br>
+            <input type="number" value="" name="cellphone" placeholder="New number of cellphone" ><br><br>
+            <input type="password" value="" id="password" name="password" placeholder="New password" ><br><br>
+            <input type="password" value="" id="confirm_password"name="confirm_password" placeholder="Confirm new password" ><br><br>
+            <button class="cancelb" onclick="closeModal('update','account',<?= $_SESSION["id"] ?>)">Cancel</button>
+            <button class="addb" name="updateAccountbtn" type="submit" value="ok" >Update Info</button>
+            </form>
+          </center>
+        </div>
+        </div>
+        <!-- modal delete---------------------------------------------------------->
+        <div id="modal_delete_account#<?=  $_SESSION["id"]?>" class="modal">
+
+  <!-- Modal content delete-------------------------------------- -->
+        <div class="modal-content">
+          <center>
+          
+          <span class="close" onclick="closeModal('delete','account',<?= $_SESSION["id"] ?>)">&times;</span>
+          <h1 class="danger">Delete a Product:</h1>
+          <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
+          <div class="card_seller m_auto">
+            <text class="user" >
+                <h2 class="tittle bigsize"><div class="colorgreen" >id: #<?php echo $_SESSION["id"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Name:</div> <div class="colorblue"><?php echo $_SESSION["name"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Email: </div> <div class="colorblue"><?php echo $_SESSION["email"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Password: </div> <div class="colorblue"><?php echo $_SESSION["password"]; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Role:</div> <div class="colorblue"> <?php echo $_SESSION["role"]; ?> </div> </h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Number Tel:</div> <div class="colorblue"> <?php echo $_SESSION["cellphone"]; ?> </div> </h2>
+              
+            </text>
+
+        </div>
+          <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
+          <input type="hidden" value="<?= $_SESSION["id"] ?>" name="id_delete_account">
+            <br><br> <label for=""><h2>Are your sure that delete your Account? </h2> </label>
+            <button class="addb" onclick="closeModal('delete','account',<?php echo $_SESSION["id"]; ?>)">Cancel</button>
+            <button class="cancelb" name="deleteAccountBtn" type="submit" value="ok" >Delete</button>
+            </form>
+            </center>
+        </div>
+        </div>
+    </div>
+    <script>var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;</script>
+    <script src="script.js"></script>
+  </body>
+</html>

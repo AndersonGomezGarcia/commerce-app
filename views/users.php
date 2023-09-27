@@ -25,23 +25,29 @@ if(empty($_SESSION["id"])){
 <body>
     <div id="blur">
     <header>
-        <nav class="menu">
+    <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Inicio</a></li>
-                <li><a class="menu-text" href="about.php">Acerca de</a></li>
-                <li><a class="menu-text" href="index.php">Catalogo</a></li>
+                <li><a class="menu-text" href="about.php">About</a></li>
+                <li><a class="menu-text" href="index.php">Catalog</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
-                    <li><a class="menu-text" href="">Your products</a></li>
+                    <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin") {
-                      echo '
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){?>
                       <li><a class="menu-text" href="products.php">Products</a></li>
                       <li><a class="menu-text" href="purchases.php">Purchases</a></li>
-                      ';
-                    }
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>
+                      <?php
+                      if($_SESSION["role"] == "Admin"){?>
+    
+                      <li><a class="menu-text" href="users.php">Users</a></li>
+                      <li><a class="menu-text" href="development_tasks.php">tasks</a></li>';
+                     <?php }
+                    }elseif($_SESSION["role"] == "Developer"){?>
+                      echo'<li><a class="menu-text" href="developer_tasks.php">tasks</a></li>';
+                      <?php }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
                   }
@@ -58,7 +64,7 @@ if(empty($_SESSION["id"])){
               
               
               echo'
-              <button class="log-in center" id="login-btn" onclick="window.location.href="account.php";" >
+              <button class="log-in center" id="login-btn" onclick="window.location.href="./account.php";" >
                 <img src = "css/user.svg" class"user_svg"/>
                   <div class"block">
                     <h1 class"center block">'.$_SESSION["role"].'</h1>
@@ -122,8 +128,8 @@ if(empty($_SESSION["id"])){
             <div class="ed">
                 <h2 class="price">Options</h2>
                 <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-                <button class="update_button"  onclick="openModal('update' , 'user' , <?= $users->id ?>)" >Update Role</button>
-                <button class="delete_button" onclick="openModal('delete','user',<?= $users->id ?>)">Delete</button>
+                <button class="accessButton"  onclick="openModal('update' , 'user' , <?= $users->id ?>)" >Update Role</button>
+                <button class="dangerButton" onclick="openModal('delete','user',<?= $users->id ?>)">Delete</button>
             </div>
         </div>
         <!-- The Modal update para products--------------------->
@@ -147,7 +153,7 @@ if(empty($_SESSION["id"])){
                 <h2 class="price"></h2>
                 <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
             </div>
-        </div>
+          </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" >   
             <input type="hidden" value="<?= $users->id ?>" name="id_update_user">
 
@@ -172,24 +178,25 @@ if(empty($_SESSION["id"])){
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('delete','product',<?= $products->id ?>)">&times;</span>
+          <span class="close" onclick="closeModal('delete','user',<?= $users->id ?>)">&times;</span>
           <h1 class="danger">Delete a Product:</h1>
           <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
-          <div class="card_seller alert">
-        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
-            <text>
-                <h2 class="tittle"><?php echo $products->name; ?></h2>
-                <h3><?php echo $products->description; ?>.</h3>
+          <div class="card_seller">
+            <text class="user" >
+                <h2 class="tittle bigsize"><div class="colorgreen" >id: #<?php echo $users->id; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Name:</div> <div class="colorblue"><?php echo $users->name; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Email: </div> <div class="colorblue"><?php echo $users->email; ?></div></h2>
+                <h2 class="subtittle"><div class="colorfuxy" >Role:</div> <div class="colorblue"> <?php echo $users->role; ?> </div> </h2>
             </text>
             <div class="ed">
-                <h2 class="price">$<?php echo $products->price; ?></h2>
-
+                <h2 class="price"></h2>
+                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
             </div>
-        </div>
+          </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-          <input class="addi" type="hidden" value="<?= $products->id ?>" name="id_delete" placeholder="Title:">  
+          <input class="addi" type="hidden" value="<?= $users->id ?>" name="id_user_delete" placeholder="Title:">  
             <br><br>
-            <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
+            <button class="addb" onclick="closeModal('delete','user',<?= $users->id ?>)">Cancel</button>
             <button class="cancelb" name="deletebtn" type="submit" value="ok" >Delete</button>
             </form>
             

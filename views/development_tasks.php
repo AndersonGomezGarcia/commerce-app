@@ -23,6 +23,7 @@ if(empty($_SESSION["id"])){
 
 </head>
 <body>
+    <input type="hidden" name="id_user">
     <div id="blur">
     <header>
     <nav class="menu">
@@ -78,106 +79,127 @@ if(empty($_SESSION["id"])){
     </header>
     <div class="products catalogue block ">
         <text class="tittlep">
-            <h1>Catalogo informacion</h1>
-            <h2>Opciones de edicion</h2>
+            <h1>Info about of all payments</h1>
+            <h2>Options to manage it</h2>
         </text>
         <!-- Trigger/Open The Modal -->
 
-<!-- The Modal add -->
-        <div id="modal_add_product" class="modal">
 
-  <!-- Modal content add -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h1>Add a Product:</h1>
-          <h3 class="subtitled_add">Complete the information:</h3>
-          <form class="form_add" action="" enctype="multipart/form-data" method="POST" >   
-            <input class="addi" type="text" name="name_add" placeholder="Title:"><br><br>
-            <textarea name="description_add" id="" cols="30" rows="10" placeholder="Description:"></textarea> <br><br>
-            <input  type="number" name="price_add" placeholder="Price:" ><br><br>
-            <label class="a" >Image Upload:</label><input type="file" class="file_add" name="file_add" ><br><br>
-            <button class="cancelb">Cancel</button>
-            <button class="addb" name="registerbtn" type="submit" value="ok" >Add</button>
-            </form>
-        </div>
-
-        </div>
-        <script>
-          var conteo =0;
-  
-        </script>
-        <!--El boton usa javascript del script.js para su funcionalidad de pop up -->
-        <button id="btn_add_product" class="addp ">Add product</button>     
+        <!--El boton usa javascript del script.js para su funcionalidad de pop up -->    
         <?php
         include "../models/connection.php";
         include "../controllers/controller_products.php";
-        
+        include "../controllers/controller_purchases.php";
+        include "../controllers/controller_payments.php";
+        //include "../controllers/controller_users.php";
 
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
-        while($products=$sqlproducts->fetch_object()){
-          ?>
-        <div class="card_seller">
-        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
-            <text>
-                <h2 class="tittle"><?php echo $products->name; ?></h2>
-                <h3><?php echo $products->description; ?>.</h3>
-            </text>
-            <div class="ed">
-                <h2 class="price">$<?php echo $products->price; ?></h2>
-                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-                <button class="accessButton"  onclick="openModal('update' , 'product' , <?= $products->id ?>)" >Update</button>
-                <button class="dangerButton" onclick="openModal('delete','product',<?= $products->id ?>)">Delete</button>
-            </div>
-        </div>
-        <!-- The Modal update para products--------------------->
+        while($payments=$allsqlpayments->fetch_object()){
 
-         <!-- Modal content update ----------------------->
-        <div id="modal_update_product#<?= $products->id ?>" class="modal">
-
- 
-        <div class="modal-content">
           
-          <span class="close" onclick="closeModal( 'update','product',<?= $products->id ?>)">&times;</span>
-          <h1>Update a Product:</h1>
-          <h3 class="subtitled_add">Complete the information:</h3>
+            $purchase = ($connection->query("select * from purchases where id_payment = '$payments->id'"))->fetch_object();
+            //echo '<h1>hola</h1>';
+            $product = $connection->query("select * from products where id = '$purchase->id_product' ");
+              while($prod=$product->fetch_object()){
+                $products = $prod;
+            }
+            if ($purchase->id_developer){
+              $developer = $connection->query("select * from developers where id = '$purchase->id_developer'")->fetch_object();
+              $developer_id = $developer->id;   
+              $developer_name = ($connection->query("select * from users where id = '$developer->id_user'")->fetch_object())->name;
+            }else{
+              $developer_id = "?";
+              $developer_name = "None";
+            }
+
+
+          ?>
           <div class="card_seller">
-        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+          <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle"><?php echo $products->name; ?></h2>
+                <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  <?php echo $products->name ?> of client #<?= $purchase->id_client ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
-                <h2 class="price">$<?php echo $products->price; ?></h2>
+                <h2 class="price">-><?php 
+                if( $purchase->status == "ToDo"){
+                                 
+                    echo "<text class='cancelb danger'>".$purchase->status."</text>";
 
+                    echo "<br><br><br><text>".$developer_name." #".$developer_id."</text>";        
+                } elseif($purchase->status == "InProgress"){
+                    echo "<text class='addb access'>".$purchase->status."</text>"; 
+
+                }elseif($purchase->status == "Done"){
+
+                }
+                    ?></h2>
+                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
+                <button class="cautionButton" onclick="openModal('aprove','purchase',<?= $products->id ?>)">Change</button>
+                <button class="dangerButton" onclick="openModal('delete','purchase',<?= $products->id ?>)">Report</button>
             </div>
-        </div>
-          <form class="form_add" action="" enctype="multipart/form-data" method="POST" >   
-            <input class="addi" type="hidden" value="<?= $products->id ?>" name="id_update" placeholder="Title:">
-            <input class="addi" type="text" name="name_update" placeholder="Title:"><br><br>
-            <textarea name="description_update" id="" cols="30" rows="10" placeholder="Description:"></textarea> <br><br>
-            <input  type="number" name="price_update" placeholder="Price:" ><br><br>
-            <label class="a" >Image Upload:</label><input type="file" class="file_add" name="file_update" ><br><br>
-            <button class="cancelb" onclick="closeModal('update','product',<?= $products->id ?>)">Cancel</button>
-            <button class="addb" name="updatebtn" type="submit" value="ok" >Update</button>
-            </form>
-            
-        </div>
         </div>
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_delete_product#<?= $products->id ?>" class="modal">
+        <div id="modal_aprove_purchase#<?= $products->id ?>" class="modal">
 
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('delete','product',<?= $products->id ?>)">&times;</span>
+          <span class="close" onclick="closeModal('aprove','purchase',<?= $products->id ?>)">&times;</span>
+          <h1 class="access">Update the state of a development:</h1>
+          <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
+          <div class="card_seller alert">
+        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+            <text>
+            <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  <?php echo $products->name ?> of client #<?= $purchase->id_client ?></h2>
+                <h3><?php echo $products->description; ?>.</h3>
+            </text>
+            <div class="ed">
+                <h2 class="price">$<?php echo $products->price; ?></h2>
+
+            </div>
+        </div><br>
+        
+          <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
+            <input class="addi" type="hidden" value="<?= $purchase->id ?>" name="id_update_purchase" placeholder="Title:">  
+            <label>New Status of the task:</label>
+            
+            <input type="hidden" select="status" name="roles" id="browser"><!-- list= hace referencia al la datalist que usara como datos-->
+            <select id="roles" name="status" >
+              <option value="ToDo">ToDo</option>
+              <option value="InProgress">InProgress</option>
+              <option value="Done">Done</option>
+            </select><br><br>
+            <button class="cancelb" onclick="closeModal('aprove','purchase',<?= $products->id ?>)">Cancel</button>
+            <button class="addb" name="updateStatusPurchasebtn" type="submit" value="ok" >Update</button>
+            </form>
+            
+        </div>
+        </div>
+        <!-- intento de cerrar mediante window.onclick-->
+        <script>
+          window.onclick = function(event) {
+              if (event.target == document.getElementById("modal_aprove_purchase#<?= $products->id ?>")) {
+                document.getElementById("modal_aprove_purchase#<?= $products->id ?>").style.display = "none";
+              }
+            }
+        </script>
+        
+        <!-- modal delete---------------------------------------------------------->
+        <div id="modal_delete_purchase#<?= $products->id ?>" class="modal">
+
+  <!-- Modal content delete-------------------------------------- -->
+        <div class="modal-content">
+          
+          <span class="close" onclick="closeModal('delete','purchase',<?= $products->id ?>)">&times;</span>
           <h1 class="danger">Delete a Product:</h1>
           <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
           <div class="card_seller alert">
         <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle"><?php echo $products->name; ?></h2>
+                <h2 class="tittle">Purchase#<?= $purchases->id ?>: <?php echo $products->name; ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
@@ -186,10 +208,11 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-          <input class="addi" type="hidden" value="<?= $products->id ?>" name="id_delete" placeholder="Title:">  
+            <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+            
             <br><br>
-            <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
-            <button class="cancelb" name="deletebtn" type="submit" value="ok" >Delete</button>
+            <button class="addb" onclick="closeModal('delete','purchase',<?= $products->id ?>)">Cancel</button>
+            <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok" >Delete</button>
             </form>
             
         </div>
@@ -197,17 +220,7 @@ if(empty($_SESSION["id"])){
         
         <?php
         }?>
-        <!-- intento de cerrar mediante window.onclick-->
-        <script>
-          window.onclick = function(event) {
-          for (var i=1; i<=conteo;i+=1){
-            
-              if (event.target == document.getElementById("modal_update_product#"+i)) {
-                document.getElementById("modal_update_product#"+i).style.display = "none";
-              }
-            }
-          }
-        </script>
+        
         
 
     </div>

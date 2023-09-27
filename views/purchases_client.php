@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 session_start();
 if(empty($_SESSION["id"])){
   //$active = false;
@@ -14,6 +17,10 @@ if(empty($_SESSION["id"])){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv=”Expires” content=”0″>
+<meta http-equiv=”Last-Modified” content=”0″>
+<meta http-equiv=”Cache-Control” content=”no-cache, mustrevalidate”>
+    <meta http-equiv=”Pragma” content=”no-cache”>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
     <link rel="stylesheet" href="css/styles.css">
@@ -26,23 +33,29 @@ if(empty($_SESSION["id"])){
     <input type="hidden" name="id_user">
     <div id="blur">
     <header>
-        <nav class="menu">
+    <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Inicio</a></li>
-                <li><a class="menu-text" href="about.php">Acerca de</a></li>
-                <li><a class="menu-text" href="index.php">Catalogo</a></li>
+                <li><a class="menu-text" href="about.php">About</a></li>
+                <li><a class="menu-text" href="index.php">Catalog</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
-                    <li><a class="menu-text" href="">Your products</a></li>
+                    <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller"){
-                      echo '
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){?>
                       <li><a class="menu-text" href="products.php">Products</a></li>
-                      
-                      ';
-                    }
+                      <li><a class="menu-text" href="purchases.php">Purchases</a></li>
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>
+                      <?php
+                      if($_SESSION["role"] == "Admin"){?>
+    
+                      <li><a class="menu-text" href="users.php">Users</a></li>
+                      <li><a class="menu-text" href="development_tasks.php">tasks</a></li>';
+                     <?php }
+                    }elseif($_SESSION["role"] == "Developer"){?>
+                      echo'<li><a class="menu-text" href="developer_tasks.php">tasks</a></li>';
+                      <?php }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
                   }
@@ -59,7 +72,7 @@ if(empty($_SESSION["id"])){
               
               
               echo'
-              <button class="log-in center" id="login-btn" onclick="window.location.href="account.php";" >
+              <button class="log-in center" id="login-btn" onclick="window.location.href="./account.php";" >
                 <img src = "css/user.svg" class"user_svg"/>
                   <div class"block">
                     <h1 class"center block">'.$_SESSION["role"].'</h1>
@@ -84,14 +97,14 @@ if(empty($_SESSION["id"])){
         include "../models/connection.php";
         include "../controllers/controller_products.php";
         include "../controllers/controller_purchases.php";
+        include "../controllers/controller_payments.php";
 
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
         while($purchases=$sqlpurchases->fetch_object()){
             $product= $connection->query("select * from products where products.id = '$purchases->id_product'");
-            
-           
+            //  $details = ;
             while($prod=$product->fetch_object()){
                 $products = $prod;
             }
@@ -99,61 +112,57 @@ if(empty($_SESSION["id"])){
 
           ?>
         <div class="card_seller">
-        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
-            <text>
-                <h2 class="tittle">Purchase#<?= $purchases->id ?>:  <?php echo $products->name; ?></h2>
-                <h3><?php echo $products->description; ?>.</h3>
-            </text>
-            <div class="ed">
-                <h2 class="price">$<?php echo $products->price; ?></h2>
-                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-                <button class="delete_button" onclick="openModal('delete','purchase',<?= $products->id ?>)">Delete</button>
-            </div>
+          <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+          <text>
+              <h2 class="tittle">Purchase#<?= $purchases->id ?>:  <?php echo $products->name; ?></h2>
+              <h3><?php echo $products->description; ?>.</h3>
+              <br>
+              <h3 class="process" ><b>Your details:  </b> <?= $purchases->clientdetails;?>  </h3>
+          </text>
+          <div class="ed">
+            <h2 class="price">$<?php echo $products->price; ?></h2>
+            <button class="dangerButton" onclick="openModal('delete','purchase',<?= $purchases->id ?>)">Cancel Purchase</button>
+          </div>
         </div>
         
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_delete_purchase#<?= $products->id ?>" class="modal">
+        <div id="modal_delete_purchase#<?= $purchases->id ?>" class="modal">
 
-  <!-- Modal content delete-------------------------------------- -->
+        <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('delete','purchase',<?= $products->id ?>)">&times;</span>
-          <h1 class="danger">Delete a Product:</h1>
-          <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
+          <span class="close" onclick="closeModal('delete','purchase',<?= $purchases->id ?>)">&times;</span>
+          <h1 class="danger">Cancel a purchase:</h1>
+          <h3 class="subtitled_add danger">Are you sure of cancel this item?:</h3>
+          
           <div class="card_seller alert">
-        <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
+            <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
                 <h2 class="tittle">Purchase#<?= $purchases->id ?>: <?php echo $products->name; ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
+                <h3 ><b>Your details:  </b> <?= $purchases->clientdetails;?>  </h3></div>
+                <br>
+
             </text>
             <div class="ed">
                 <h2 class="price">$<?php echo $products->price; ?></h2>
 
             </div>
         </div>
-          <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-          <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+        
+          <form class="form_add" action="" method="POST" > 
+            <input type="hidden" value="<?= $purchases->id ?>" name="id_delete" >  
+            <input type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" >  
             <br><br>
-            <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
+            <button class="addb" onclick="closeModal(<?= $purchases->id ?>)">Cancel</button>
             <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok" >Delete</button>
-            </form>
+          </form>
             
         </div>
         </div>
         
         <?php
         }?>
-        <!-- intento de cerrar mediante window.onclick-->
-        <script>
-          window.onclick = function(event) {
-          for (var i=1; i<=conteo;i+=1){
-            
-              if (event.target == document.getElementById("modal_update_product#"+i)) {
-                document.getElementById("modal_update_product#"+i).style.display = "none";
-              }
-            }
-          }
-        </script>
         
 
     </div>

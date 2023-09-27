@@ -1,0 +1,10 @@
+"filename", "language", "JavaScript", "PHP", "CSS", "XML", "comment", "blank", "total"
+"c:\xampp\htdocs\commerce-app\controllers\controller_purchases.php", "PHP", 0, 17, 0, 0, 1, 1, 19
+"c:\xampp\htdocs\commerce-app\controllers\controller_users.php", "PHP", 0, 33, 0, 0, 1, 4, 38
+"c:\xampp\htdocs\commerce-app\views\account.php", "PHP", 0, 10, 0, 0, 0, -1, 9
+"c:\xampp\htdocs\commerce-app\views\css\Group 27.svg", "XML", 0, 0, 0, 14, 0, 1, 15
+"c:\xampp\htdocs\commerce-app\views\css\styles.css", "CSS", 0, 0, 40, 0, 0, 2, 42
+"c:\xampp\htdocs\commerce-app\views\developer_tasks.php", "PHP", 0, -5, 0, 0, 0, -1, -6
+"c:\xampp\htdocs\commerce-app\views\development_tasks.php", "PHP", 0, -2, 0, 0, 0, 1, -1
+"c:\xampp\htdocs\commerce-app\views\script.js", "JavaScript", 27, 0, 0, 0, 3, 7, 37
+"Total", "-", 27, 53, 40, 14, 5, 14, 153

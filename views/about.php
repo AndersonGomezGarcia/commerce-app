@@ -18,20 +18,27 @@ session_start();
     <header>
     <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Inicio</a></li>
-                <li><a class="menu-text" href="about.php">Acerca de</a></li>
-                <li><a class="menu-text" href="index.php">Catalogo</a></li>
+                <li><a class="menu-text" href="about.php">About</a></li>
+                <li><a class="menu-text" href="index.php">Catalog</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
-                    <li><a class="menu-text" href="">Your products</a></li>
+                    <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller"){
-                      echo '
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){?>
                       <li><a class="menu-text" href="products.php">Products</a></li>
-                      ';
-                    }
+                      <li><a class="menu-text" href="purchases.php">Purchases</a></li>
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>
+                      <?php
+                      if($_SESSION["role"] == "Admin"){?>
+    
+                      <li><a class="menu-text" href="users.php">Users</a></li>
+                      <li><a class="menu-text" href="development_tasks.php">tasks</a></li>';
+                     <?php }
+                    }elseif($_SESSION["role"] == "Developer"){?>
+                      <li><a class="menu-text" href="developer_tasks.php">tasks</a></li>';
+                      <?php }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
                   }
@@ -48,7 +55,7 @@ session_start();
               
               
               echo'
-              <button class="log-in center" id="login-btn" onclick="window.location.href="account.php";" >
+              <button class="log-in center" id="login-btn" onclick="window.location.href="./account.php";" >
                 <img src = "css/user.svg" class"user_svg"/>
                   <div class"block">
                     <h1 class"center block">'.$_SESSION["role"].'</h1>
@@ -60,6 +67,9 @@ session_start();
             
         </nav>
     </header>
+    <section id="imageAbout">
+      <img src="./css/development.jpg" alt="">
+    </section>
     <section id="acerca">
         <h2>Acerca de DigitCol</h2>
         <p>Somos Digit Col, una empresa de marketing digital y posicionamiento web. En Digit Col, nuestro objetivo es ayudar a nuestros clientes a alcanzar sus objetivos de negocio y mejorar su presencia en línea. En Digit Col, creemos en el poder del marketing digital y la importancia de una presencia en línea sólida y efectiva. Nos apasiona lo que hacemos y nos enorgullece ayudar a nuestros clientes a alcanzar sus metas de negocio.</p>

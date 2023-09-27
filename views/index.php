@@ -23,27 +23,27 @@ if(empty($_SESSION["id"])){
     <header>
         <nav class="menu">
             <ul>
-                <li><a class="menu-text" href="">Home</a></li>
                 <li><a class="menu-text" href="about.php">About</a></li>
-                <li><a class="menu-text" href="">Catalogo</a></li>
+                <li><a class="menu-text" href="#">Catalog</a></li>
                 <?php
                   if(!empty($_SESSION["id"])){
                     if($_SESSION["role"] == "Client")
                     echo'
                     <li><a class="menu-text" href="purchases_client.php">Your products</a></li>
                     ';
-                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){
-                      echo '
+                    if($_SESSION["role"] == "Seller" OR $_SESSION["role"] == "Admin"){?>
                       <li><a class="menu-text" href="products.php">Products</a></li>
                       <li><a class="menu-text" href="purchases.php">Purchases</a></li>
-                      ';
-                      if($_SESSION["role"] == "Admin"){
-                        echo '
-                      <li><a class="menu-text" href="users.php">Users</a></li>;
-                      <li><a class="menu-text" href="payments.php">Payments</a></li>;
-                      <li><a class="menu-text" href="development_task.php">tasks</a></li>';
-                      }
-                    }
+                      <li><a class="menu-text" href="payments.php">Payments</a></li>
+                      <?php
+                      if($_SESSION["role"] == "Admin"){?>
+    
+                      <li><a class="menu-text" href="users.php">Users</a></li>
+                      <li><a class="menu-text" href="development_tasks.php">tasks</a></li>
+                     <?php }
+                    }elseif($_SESSION["role"] == "Developer"){?>
+                      <li><a class="menu-text" href="developer_tasks.php">tasks</a></li>
+                      <?php }
                     echo'
                     <a class="logout text-danger" href="../controllers/controller_signoff.php">LogOut</a>';
                   }
@@ -123,7 +123,9 @@ if(empty($_SESSION["id"])){
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
           <input type="hidden" value="<?= $products->id ?>" name="id_product">  
           <input type="hidden" value="<?php echo $products->price; ?>" name="value_product">  
-          <input type="hidden" value="<?=$_SESSION["id"]?>" name="id_user" >  
+          <input type="hidden" value="<?=$_SESSION["id"]?>" name="id_user" >  <br><bR>
+          <label><h2> Enter details about the type of service you want. </h2></label><br> <br>
+          <textarea type="text" value="" name="details" > </textarea> 
             <br><br>
             <button class="cancelb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
 

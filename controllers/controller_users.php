@@ -27,5 +27,43 @@ if(!empty($_POST["updateRolebtn"])){
     }
     
 }
+if(!empty($_POST["updateAccountbtn"])){
+    $id_user=$_POST["id_update_account"];
+    $name=$_POST["name"];
+    if ($name == ""){
+        $name = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->name;
+    }
+    $cellphone = $_POST["cellphone"];
+    if ($cellphone == ""){
+        $cellphone = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->cellphone;
 
+    }else{
+        echo 'No se dectecto el celular'.($cellphone == "");
+    }
+    $password = $_POST["password"];
+    if ($password == ""){
+        $password = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->password;
+    }
+    $sql = $connection->query( " update users set name='$name', cellphone = '$cellphone', password = '$password' where users.id=$id_user");
+    if ($sql){
+        $sql=$connection->query(" select * from users where id= '$id_user' ");
+        // es el select de mysql con la base de datos
+        if ($dates=$sql->fetch_object()){//si sql devuelve una lista de atributos
+            $_SESSION["id"]=$dates->id;//almacenando el id del usuario
+            $_SESSION["name"]=$dates->name;
+            $_SESSION["email"]=$dates->email;
+            $_SESSION["password"]=$dates->password;
+            $_SESSION["role"]=$dates->role;
+            $_SESSION["cellphone"]=$dates->cellphone;
+            header("location: account.php");
+
+        }
+    }
+
+    
+    
+}
+if(!empty($_POST["deleteAccountBtn"])){
+    $id_user=$_POST["id_update_account"];
+}
 ?>

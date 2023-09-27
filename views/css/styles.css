@@ -65,6 +65,7 @@ nav ul li a:HOVER{
     background: linear-gradient(to right ,#376FFF,#A144FF,#201D22,#201D22);
     background-size: 400% 400%;
     background-position: 0% 0%;
+    box-shadow: #fd71ffa8 0px     0px 20px -10px;
  
 }
 .front-page{
@@ -190,7 +191,9 @@ nav ul li a:HOVER{
     position: relative;
     transition: 0.7s;
 }
-
+.image{
+    font-size: 35px;
+}
 .card_seller .image{
     margin: 20px 15px 20px 15px!important; 
     width: 350px!important;
@@ -251,15 +254,60 @@ button.addp{
     border-radius: 8px;
     background-position: 100% 100%;
     transition: 1s;
+    word-break: keep-all!important;
 }
-button.addp:hover,button.update_button:hover ,button.delete_button:hover{
-    cursor: pointer;
-    background-position: 200% 00%;
+.accessButton{
+    margin-left: 20px;
+    color: black;
+    color: #201D22;
+    font-weight: bolder;
+    font-size: large;
+    padding: 12px;
+    background: linear-gradient(to right ,#0fbc03,#0c7401,#0c7401,#0fbc03)!important;
+    background-size: 200%!important;
+    border: none;
+    border-radius: 8px;
+    background-position: 100% 100%!important;
+    transition: 1s!important;
+    word-break: keep-all!important;
+}
+
+.dangerButton{
+    margin-left: 20px;
+    color: black;
+    color: #201D22;
+    font-weight: bolder;
+    font-size: large;
+    padding: 12px;
+    background: linear-gradient(to right ,#ff444d,#ff2a2a,#ff2a2a,#fb3e48)!important;
+    background-size: 200%!important;
+    border: none;
+    border-radius: 8px;
+    background-position: 100% 100%!important;
+    transition: 1s!important;
+    word-break: keep-all!important;
+}
+.cautionButton{
+    margin-left: 20px;
+    color: black;
+    color: #201D22;
+    font-weight: bolder;
+    font-size: large;
+    padding: 12px;
+    background: linear-gradient(to right ,#ff9c39,#e96421,#e96421,#ff9c39)!important;
+    background-size: 200%!important;
+    border: none;
+    border-radius: 8px;
+    background-position: 100% 100%!important;
+    transition: 1s!important;
+    word-break: keep-all!important;
+}
+button.addp:hover,button.update_button:hover ,button.delete_button:hover, .accessButton:hover,.dangerButton:hover,.cautionButton:hover{
+    cursor: pointer!;
+    background-position: 200% 00%!important;
     transition: 0.3s;
     cursor: pointer;
     color: #000;
-
-
 }
 .card_seller h3{
     font-style: normal;
@@ -592,7 +640,8 @@ footer{
     font-size: +20px;
     right: 10vw;
     transition: 0.4s;
-
+    background-size: 220% 220%;
+    background-position: 100% 100%;
     width: auto;
     height: auto;
     padding: 9px;
@@ -600,12 +649,17 @@ footer{
     margin-top: -10px;
 }
 .logout:hover{
-    
+    color: #1d0003;
+    background-size: 400% 400%!important;
+    box-shadow: 0px 0px 10px rgba(255, 143, 143, 0.5);
+    background: linear-gradient(to right , #dc3545 ,#ff5252,#201D22,#201D22);
     font-weight: 700;
     font-size: 21px;
     transition: 0.3s;
+    background-position: 0% 0%;
     border: #dc3545 solid 1px ;
-    background-color: #fbcacf;
+    background-color: #f55b6a;
+
 }
 
 /* The Modal (background) */
@@ -705,19 +759,42 @@ label.a{
     border-radius: 7px;
     color: #376FFF;
 }
-.addb, .alert_a{/*boton de agregar en crud*/
-    background: rgba(34, 160, 34, 0.288);
-    border: .2em solid rgb(34, 160, 34);
+.addb, .alert_a, .crystalAccessButton{/*boton de agregar en crud*/
+    background: rgb(109, 234, 109);
+    border: .2em solid rgb(0, 141, 0);
     padding: 20px;
     font-size: 22px;
+    color: #074800;
+    transition: 0.6s;
 }
-.cancelb, .alert_d{/*boton de agregar en crud*/
-    background: rgba(209, 0, 35, 0.37);
-    border: .2em solid rgb(209, 0, 35);
+
+.accessb{/*boton de agregar en crud*/
+    background: rgb(109, 234, 109);
+    border: .2em solid rgb(0, 141, 0);
+    padding: 20px;
+    font-size: 22px;
+    color: #074800;
+    transition: 0.6s;
+    width: fit-content;
+    float: right;
+}
+.cancelb, .alert_d, .crystalDangerButton{/*boton de agregar en crud*/
+    background: rgb(238,96,120);
+    border: .2em solid rgba(209, 0, 35, 0.754);
     padding: 20px;
     width: auto;
-    color: rgb(66, 0, 11);
+    color: rgb(33, 0, 6);
     font-size: 22px;
+    transition: 0.7s;
+}
+.cancelb:hover, .alert_d:hover, .crystalDangerButton:hover{
+    background: rgb(248, 74, 103);
+    transition: 0.3s;
+}
+.addb:hover, .alert_a:hover, .crystalAccessButton:hover{
+    background: rgb(62, 224, 62);
+    transition: 0.2s;
+
 }
 .alert, .alert_a , .alert_d{
     width: 10vw;
@@ -728,10 +805,10 @@ label.a{
     margin: auto;
 }
 .danger{
-    color: rgb(182, 0, 30)!important;
+    color: rgb(132, 1, 23)!important;
 }
 .access, .colorgreen{
-    color: rgb(34, 160, 34)!important;
+    color: rgb(0, 115, 0)!important;
 }
 .colorblue{
     color: #376FFF;
@@ -762,4 +839,69 @@ text.user{
 .date{
     width: 20%!important;
     margin-right: 30%;
+}
+h1,h2,h3,.subtittle{
+    word-break: break-all!important;
+}
+.crystalCautionButton, .cautionb{
+    background: rgba(255, 98, 0, 0.37);
+    border: .2em solid rgb(255, 68, 0);
+    padding: 20px;
+    width: auto;
+    color: rgb(106, 19, 0);
+    font-size: 22px;
+}
+
+.m_auto{
+    margin: auto;;
+}
+.cautionb{/*boton de agregar en crud*/
+    background: rgb(255, 136, 71);
+    border: .2em solid rgb(255, 98, 0);
+    padding: 20px;
+    width: auto;
+    color: rgb(116, 19, 0);
+    font-size: 22px;
+    transition: 0.7s;
+}
+.processb{
+    background: rgb(71, 221, 255);
+    border: .2em solid rgb(0, 128, 255);
+    padding: 20px;
+    width: auto;
+    color: rgb(0, 27, 116);
+    font-size: 22px;
+    transition: 0.7s;
+    word-break: keep-all;
+    border-radius: 8px;
+}
+.process{
+    color: rgb(0, 128, 255)!important;
+}
+
+.processb:hover{
+    background: rgb(15, 191, 230);
+    transition: 0.4s;
+}
+.addb:hover,.cancelb:hover{
+    cursor: pointer!important;
+}
+
+#imageAbout img{
+    border-radius: 35px;
+    width: 100%;
+    background: black;
+    box-shadow: black 0px 0px 10px ;
+}
+
+section h2{
+    font-size: xx-large;
+    margin-bottom: 9px;
+}
+section p, section li{
+    font-size: 21px;
+    text-align: left!important;
+}
+section li{
+    margin-left: 35px;
 }
