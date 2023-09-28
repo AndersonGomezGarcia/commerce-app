@@ -1,9 +1,0 @@
-"filename", "language", "PHP", "CSS", "comment", "blank", "total"
-"c:\xampp\htdocs\commerce-app\controllers\controller_payments.php", "PHP", 11, 0, 0, 1, 12
-"c:\xampp\htdocs\commerce-app\controllers\controller_purchases.php", "PHP", 5, 0, 0, 1, 6
-"c:\xampp\htdocs\commerce-app\views\css\styles.css", "CSS", 0, 56, 0, -2, 54
-"c:\xampp\htdocs\commerce-app\views\developer_tasks.php", "PHP", 6, 0, 1, 1, 8
-"c:\xampp\htdocs\commerce-app\views\index.php", "PHP", 1, 0, 0, 0, 1
-"c:\xampp\htdocs\commerce-app\views\payments.php", "PHP", 45, 0, 0, 4, 49
-"c:\xampp\htdocs\commerce-app\views\purchases.php", "PHP", 1, 0, 0, 0, 1
-"Total", "-", 69, 56, 1, 5, 131

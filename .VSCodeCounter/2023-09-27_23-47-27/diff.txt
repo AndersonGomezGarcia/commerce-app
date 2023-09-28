@@ -1,0 +1,35 @@
+Date : 2023-09-27 23:47:27
+Directory : c:\xampp\htdocs\commerce-app
+Total : 9 files,  -327 codes, -3 comments, -54 blanks, all -384 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| PHP      |          9 |       -327 |         -3 |        -54 |       -384 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                        | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                           |          9 |       -327 |         -3 |        -54 |       -384 |
+| controllers                                                 |          1 |         48 |          0 |          6 |         54 |
+| views                                                       |          8 |       -375 |         -3 |        -60 |       -438 |
++-------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                    | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\xampp\htdocs\commerce-app\controllers\controller_nav.php | PHP      |         48 |          0 |          6 |         54 |
+| c:\xampp\htdocs\commerce-app\views\about.php                | PHP      |        -43 |          0 |         -6 |        -49 |
+| c:\xampp\htdocs\commerce-app\views\account.php              | PHP      |        -43 |          0 |         -7 |        -50 |
+| c:\xampp\htdocs\commerce-app\views\developer_tasks.php      | PHP      |        -71 |         -2 |        -14 |        -87 |
+| c:\xampp\htdocs\commerce-app\views\development_tasks.php    | PHP      |        -46 |         -1 |         -9 |        -56 |
+| c:\xampp\htdocs\commerce-app\views\payments.php             | PHP      |        -43 |          0 |         -6 |        -49 |
+| c:\xampp\htdocs\commerce-app\views\products.php             | PHP      |        -43 |          0 |         -6 |        -49 |
+| c:\xampp\htdocs\commerce-app\views\purchases.php            | PHP      |        -43 |          0 |         -6 |        -49 |
+| c:\xampp\htdocs\commerce-app\views\purchases_client.php     | PHP      |        -43 |          0 |         -6 |        -49 |
+| Total                                                       |          |       -327 |         -3 |        -54 |       -384 |
++-------------------------------------------------------------+----------+------------+------------+------------+------------+

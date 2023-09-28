@@ -18,4 +18,15 @@ if(!empty($_POST["paymentApproveBtn"])){
 
 }
 
+if(!empty($_POST["paymentDisapproveBtn"])){
+    $idPayment = $_POST["id_aprove_payment"];
+    $sql = $connection->query("update payments set method_payment = null, accreditationdate = null where id = '$idPayment' ");
+    if ($sql){
+        echo '<div class="alert_s success">Purchase deleted correctly (Your products)</div>';
+
+    }else{
+        echo '<div class="alert_s success">Error in aprove</div>';
+    }
+}
+
 ?> 

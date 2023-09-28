@@ -48,7 +48,8 @@ if(!empty($_POST["deletePurchasebtn"])){
     }else{
     }
     echo '<div class="alert_d alert-success">Purchase deleted correctly (Your products)</div>';
-    clearHistory();     
+    clearHistory();
+    
 
 
 }
@@ -61,6 +62,7 @@ if(!empty($_POST["updateStatusPurchasebtn"])){
     }else{
         echo '<div class="alert_s success">Cannot purchase (Your products)</div>';
     }
+
 }
 function todayDate(){
     $date = getdate();
@@ -83,11 +85,8 @@ if(!empty($_POST["updateStatusDeveloperPurchasebtn"])){
             $sql = $connection->query("update purchases set finishdate = '$todayDate' where id = '$idPurchase' ");
         }
     }
-    ?>
-    <script>
-        history.replaceState(null,null,location.pathname)
-    </script>
-    <?php
+    echo '<h1>aaa</h1>';
+   
 }   
 
 function getProduct () {
@@ -96,9 +95,7 @@ function getProduct () {
 
 function clearHistory(){
     ?>
-    <script>
-        history.replaceState(null,null,location.pathname)
-    </script>
+
     <?php
 }
 ?>

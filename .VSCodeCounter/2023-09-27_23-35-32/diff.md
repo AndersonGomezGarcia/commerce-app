@@ -1,27 +1,26 @@
 # Diff Summary
 
-Date : 2023-09-24 09:11:52
+Date : 2023-09-27 23:35:32
 
 Directory c:\\xampp\\htdocs\\commerce-app
 
-Total : 7 files,  443 codes, 14 comments, 81 blanks, all 538 lines
+Total : 9 files,  43 codes, 0 comments, 12 blanks, all 55 lines
 
 [Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| PHP | 5 | 433 | 14 | 79 | 526 |
-| JavaScript | 1 | 6 | 0 | 2 | 8 |
-| CSS | 1 | 4 | 0 | 0 | 4 |
+| PHP | 8 | 23 | 0 | 9 | 32 |
+| CSS | 1 | 20 | 0 | 3 | 23 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 7 | 443 | 14 | 81 | 538 |
-| controllers | 1 | 17 | 0 | 2 | 19 |
-| views | 6 | 426 | 14 | 79 | 519 |
-| views (Files) | 5 | 422 | 14 | 79 | 515 |
-| views\\css | 1 | 4 | 0 | 0 | 4 |
+| . | 9 | 43 | 0 | 12 | 55 |
+| controllers | 2 | 11 | 0 | 5 | 16 |
+| views | 7 | 32 | 0 | 7 | 39 |
+| views (Files) | 6 | 12 | 0 | 4 | 16 |
+| views\\css | 1 | 20 | 0 | 3 | 23 |
 
 [Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)
