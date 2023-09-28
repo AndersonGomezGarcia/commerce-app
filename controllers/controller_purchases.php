@@ -45,15 +45,10 @@ if(!empty($_POST["deletePurchasebtn"])){
     $sql = $connection->query(" delete from purchases where purchases.id='$id' ");
     if($sql){
         $sql = $connection->query(" delete from payments where payments.id='$id_payment' ");
-        echo "debio funcionar";
     }else{
-        echo "unn errorsito";
     }
-    
-    header("location: purchases_client.php");
     echo '<div class="alert_d alert-success">Purchase deleted correctly (Your products)</div>';
-
-
+    clearHistory();     
 
 
 }
@@ -98,4 +93,13 @@ if(!empty($_POST["updateStatusDeveloperPurchasebtn"])){
 function getProduct () {
     $product= $GLOBALS["connection"]->query("select * from products where products.id = '$purchases->id_product'");
 }
+
+function clearHistory(){
+    ?>
+    <script>
+        history.replaceState(null,null,location.pathname)
+    </script>
+    <?php
+}
 ?>
+

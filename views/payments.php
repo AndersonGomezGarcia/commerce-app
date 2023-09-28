@@ -117,23 +117,24 @@ if(empty($_SESSION["id"])){
                 <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
                 <?php 
             if($payments->method_payment == NULL){
-              ?><button class="accessButton" onclick="openModal('approve','purchase',<?= $products->id ?>)">Approve</button><?php
+              ?><button class="accessButton" onclick="openModal('approve','payments',<?= $payments->id ?>)">Approve</button><?php
             }else{?>
-              <button class="cautionButton" onclick="openModal('disapprove','purchase',<?= $products->id ?>)">Disapprove</button>
+              <?= $payments->method_payment; ?>
+              <button class="cautionButton" onclick="openModal('disapprove','payments',<?= $payments->id ?>)">Disapprove</button>
               
               <?php
             }
             ?>
-                <button class="dangerButton" onclick="openModal('delete','purchase',<?= $products->id ?>)">Delete</button>
+                <button class="dangerButton" onclick="openModal('delete','payments',<?= $payments->id ?>)">Delete</button>
             </div>
         </div>
          <!-- modal disapprove---------------------------------------------------------->
-         <div id="modal_disapprove_purchase#<?= $products->id ?>" class="modal">
+         <div id="modal_disapprove_payments#<?= $payments->id ?>" class="modal">
 
           <!-- Modal content delete-------------------------------------- -->
           <div class="modal-content">
         
-            <span class="close" onclick="closeModal('disapprove','purchase',<?= $products->id ?>)">&times;</span>
+            <span class="close" onclick="closeModal('disapprove','payments',<?= $payments->id ?>)">&times;</span>
             <h1 class="access">Aprove a Payment:</h1>
             <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
             <div class="card_seller alert">
@@ -150,7 +151,7 @@ if(empty($_SESSION["id"])){
       
         <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
           <input type="hidden" value="<?= $payments->id ?>" name="id_aprove_payment">    
-          <button class="cancelb" onclick="closeModal('disapprove','purchase',<?= $products->id ?>)">Cancel</button>
+          <button class="cancelb" onclick="closeModal('disapprove','payments',<?= $payments->id ?>)">Cancel</button>
           <?php 
           if($payments->method_payment == NULL){
             ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php
@@ -166,12 +167,12 @@ if(empty($_SESSION["id"])){
       </div>
       </div>
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_approve_purchase#<?= $products->id ?>" class="modal">
+        <div id="modal_approve_payments#<?= $payments->id ?>" class="modal">
 
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('approve','purchase',<?= $products->id ?>)">&times;</span>
+          <span class="close" onclick="closeModal('approve','payments',<?= $payments->id ?>)">&times;</span>
           <h1 class="access">Aprove a Payment:</h1>
           <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
           <div class="card_seller alert">
@@ -193,7 +194,7 @@ if(empty($_SESSION["id"])){
             <br><br>
             <label>Payment Date</label>
             <input name="payment_date" class="date" type="date" required><br><br>
-            <button class="cancelb" onclick="closeModal('approve','purchase',<?= $products->id ?>)">Cancel</button>
+            <button class="cancelb" onclick="closeModal('approve','purchase',<?= $payments->id ?>)">Cancel</button>
             <?php 
             if($payments->method_payment == NULL){
               ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php
@@ -210,18 +211,18 @@ if(empty($_SESSION["id"])){
         </div>
         
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_delete_purchase#<?= $products->id ?>" class="modal">
+        <div id="modal_delete_payments#<?= $payments->id ?>" class="modal">
 
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
-          <span class="close" onclick="closeModal('delete','purchase',<?= $products->id ?>)">&times;</span>
+          <span class="close" onclick="closeModal('delete','payments',<?= $payments->id ?>)">&times;</span>
           <h1 class="danger">Delete a Product:</h1>
           <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
           <div class="card_seller alert">
         <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>
-                <h2 class="tittle">Purchase#<?= $purchases->id ?>: <?php echo $products->name; ?></h2>
+                <h2 class="tittle">Purchase#<?= $purchase->id ?>: <?php echo $products->name; ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
@@ -230,10 +231,11 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-            <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+            <input class="addi" type="hidden" value="<?= $purchase->id ?>" name="id_delete" placeholder="Title:">  
+            <input class="addi" type="hidden" value="<?= $purchase->id_payment ?>" name="id_payment" placeholder="Title:">  
             
             <br><br>
-            <button class="addb" onclick="closeModal(<?= $products->id ?>)">Cancel</button>
+            <button class="addb" onclick="closeModal('delete','payments',<?= $payments->id ?>)">Cancel</button>
             <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok" >Delete</button>
             </form>
             

@@ -96,7 +96,7 @@ if(empty($_SESSION["id"])){
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
         while($purchases=$allsqlpurchases->fetch_object()){
             $product= $connection->query("select * from products where products.id = '$purchases->id_product'");
-            
+            $payments = ($connection->query("select * from payments where id = '$purchases->id_payment'"))->fetch_object();
            
             while($prod=$product->fetch_object()){
                 $products = $prod;
@@ -111,9 +111,17 @@ if(empty($_SESSION["id"])){
                 <h3><?php echo $products->description; ?>.</h3>
             </text>
             <div class="ed">
-                <h2 class="price">$<?php echo $products->price; ?></h2>
+                
                 <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-                <button class="accessButton" onclick="openModal('aprove','purchase',<?= $products->id ?>)">Aprove</button>
+                <?php 
+            if($payments->method_payment == NULL){
+              ?><div class="cancelb" >Disapproved<br>Payment #<?= $purchases->id_payment ?></div><?php
+            }else{?>
+              <div class="addb">Approved<br>Payment #<?= $purchases->id_payment ?></div>
+              
+              <?php
+            }
+            ?><h2 class="price">$<?php echo $products->price; ?></h2>
                 <button class="dangerButton" onclick="openModal('delete','purchase',<?= $products->id ?>)">Delete</button>
             </div>
         </div>
@@ -138,7 +146,8 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > 
-          <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">  
+          <input type="hidden" value="<?= $purchases->id ?>" name="id_delete" >  
+          <input type="hidden" value="<?= $payments->id ?>" name="id_payment" >  
           <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" placeholder="Title:">  
           <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" placeholder="Title:">  
             <br><br>

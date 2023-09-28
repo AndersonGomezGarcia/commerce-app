@@ -140,7 +140,7 @@ if(empty($_SESSION["id"])){
             <text>
                 <h2 class="tittle">Purchase#<?= $purchases->id ?>: <?php echo $products->name; ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
-                <h3 ><b>Your details:  </b> <?= $purchases->clientdetails;?>  </h3></div>
+                <h3 ><b>Your details:  </b> <?= $purchases->clientdetails;?>  </h3>
                 <br>
 
             </text>
