@@ -12,30 +12,19 @@ if(empty($_SESSION["id"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/css/Recurso.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-
+<?php  include "../controllers/controller_html.php"; head("Payments"); ?>
 </head>
 <body>
     <input type="hidden" name="id_user">
     <div id="blur">
     <header>
-    <?php include "../controllers/controller_nav.php"; nav(); ?>
+    <?= nav(); ?>
     </header>
     <div class="products catalogue block ">
         <text class="tittlep">
             <h1>Info about of all payments</h1>
             <h2>Options to manage it</h2>
         </text>
-        <!-- Trigger/Open The Modal -->
-
-
         <!--El boton usa javascript del script.js para su funcionalidad de pop up -->    
         <?php
         include "../models/connection.php";
@@ -46,16 +35,13 @@ if(empty($_SESSION["id"])){
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
-        while($payments=$allsqlpayments->fetch_object()){
-
-          
+        while($payments=$allsqlpayments->fetch_object()){       
             $purchase = ($connection->query("select * from purchases where id_payment = '$payments->id'"))->fetch_object();
             //echo '<h1>hola</h1>';
             $product = $connection->query("select * from products where id = '$purchase->id_product' ");
               while($prod=$product->fetch_object()){
                 $products = $prod;
-            }
-            
+            }    
           ?>
           <div class="card_seller">
           <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
@@ -69,23 +55,17 @@ if(empty($_SESSION["id"])){
                 <?php 
             if($payments->method_payment == NULL){
               ?><button class="accessButton" onclick="openModal('approve','payments',<?= $payments->id ?>)">Approve</button><?php
-            }else{?>
-            
+            }else{?> 
               <h2><?= $payments->method_payment; ?></h2>
-              <button class="cautionButton" onclick="openModal('disapprove','payments',<?= $payments->id ?>)">Disapprove</button>
-              
-              <?php
-            }
-            ?>
+              <button class="cautionButton" onclick="openModal('disapprove','payments',<?= $payments->id ?>)">Disapprove</button> 
+              <?php }?>
                 <button class="dangerButton" onclick="openModal('delete','payments',<?= $payments->id ?>)">Delete</button>
             </div>
         </div>
          <!-- modal disapprove---------------------------------------------------------->
          <div id="modal_disapprove_payments#<?= $payments->id ?>" class="modal">
-
           <!-- Modal content delete-------------------------------------- -->
           <div class="modal-content">
-        
             <span class="close" onclick="closeModal('disapprove','payments',<?= $payments->id ?>)">&times;</span>
             <h1 class="access">Aprove a Payment:</h1>
             <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
@@ -97,33 +77,26 @@ if(empty($_SESSION["id"])){
             </text>
           <div class="ed">
               <h2 class="price">$<?php echo $products->price; ?></h2>
-
           </div>
       </div><br>
-      
         <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
           <input type="hidden" value="<?= $payments->id ?>" name="id_aprove_payment">    
           <button class="cancelb" onclick="closeModal('disapprove','payments',<?= $payments->id ?>)">Cancel</button>
           <?php 
           if($payments->method_payment == NULL){
-            ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php
-            
+            ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php  
              }else{?>
             <button class="addb crystalCautionButton" name="paymentDisapproveBtn" type="submit" value="ok" >Disapprove</button>
-            
             <?php
           }
           ?>
-          </form>
-          
+          </form> 
       </div>
       </div>
         <!-- modal delete---------------------------------------------------------->
         <div id="modal_approve_payments#<?= $payments->id ?>" class="modal">
-
   <!-- Modal content delete-------------------------------------- -->
-        <div class="modal-content">
-          
+        <div class="modal-content">         
           <span class="close" onclick="closeModal('approve','payments',<?= $payments->id ?>)">&times;</span>
           <h1 class="access">Aprove a Payment:</h1>
           <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
@@ -135,10 +108,8 @@ if(empty($_SESSION["id"])){
             </text>
             <div class="ed">
                 <h2 class="price">$<?php echo $products->price; ?></h2>
-
             </div>
         </div><br>
-        
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
             <input type="hidden" value="<?= $payments->id ?>" name="id_aprove_payment">  
             <label>Method of payment</label>
@@ -150,10 +121,8 @@ if(empty($_SESSION["id"])){
             <?php 
             if($payments->method_payment == NULL){
               ?><button class="addb" name="paymentApproveBtn" type="submit" value="ok" >Approve</button><?php
-              
                }else{?>
               <button class="addb" name="paymentDisapproveBtn" type="submit" value="ok" >Dispprove</button>
-              
               <?php
             }
             ?>
@@ -196,37 +165,12 @@ if(empty($_SESSION["id"])){
         
         <?php
         }?>
-        <!-- intento de cerrar mediante window.onclick-->
-        <script>
-          window.onclick = function(event) {
-          for (var i=1; i<=conteo;i+=1){
-            
-              if (event.target == document.getElementById("modal_update_product#"+i)) {
-                document.getElementById("modal_update_product#"+i).style.display = "none";
-              }
-            }
-          }
-        </script>
-        
 
     </div>
     <footer>
 		<p>Derechos Reservados &copy; DigitCol</p>
     </footer>
     </div>
-    <div id="login-container">
-        <div class="login-content">
-            <button id="close-btn"></button>
-            <h2>Log in</h2>
-            <p>Ingrese sus datos de usuario</p>
-            <input type="text" id="username-input" placeholder="Usuario:">
-            <br>
-            <input type="password" id="password-input" placeholder="Contraseña:">
-            <br>
-            <button id="login-end-btn">Entrar</button>
-        </div>
-    </div>
-    
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

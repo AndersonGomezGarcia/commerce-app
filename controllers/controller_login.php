@@ -1,6 +1,5 @@
 <?php
 session_start();//indica que inicia una sesion 
-
 if(!empty($_POST{"btnlogin"})){//verifica que el boton de logi nse presiona
     //echo "btn presionado";
     if (!empty($_POST["email"] and !empty($_POST["password"]))){// verifica si tiene datos en email y password(views/login.php)
@@ -16,12 +15,10 @@ if(!empty($_POST{"btnlogin"})){//verifica que el boton de logi nse presiona
             $_SESSION["password"]=$dates->password;
             $_SESSION["role"]=$dates->role;
             $_SESSION["cellphone"]=$dates->cellphone;
-
-            header("location: index.php");
+           header("location: index.php");
         }else{
             echo "<div class='alert alert-danger'>Accedo denegado</div>";
         }
-
     }else{
         echo "Por favor completa los datos";
     }

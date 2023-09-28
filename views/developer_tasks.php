@@ -10,19 +10,13 @@ if(empty($_SESSION["id"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/css/Recurso.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<?php  include "../controllers/controller_html.php"; head("Tasks"); ?>
 </head>
 <body>
     <input type="hidden" name="id_user">
     <div id="blur">
     <header>
-    <?php include "../controllers/controller_nav.php"; nav(); ?>
+    <?= nav(); ?>
     </header>
     <div class="products catalogue block ">
         <text class="tittlep">
@@ -34,8 +28,6 @@ if(empty($_SESSION["id"])){
         include "../controllers/controller_products.php";
         include "../controllers/controller_purchases.php";
         include "../controllers/controller_payments.php";
-        
-
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,7 +35,6 @@ if(empty($_SESSION["id"])){
 
           
             $purchase = ($connection->query("select * from purchases where id_payment = '$payments->id'"))->fetch_object();
-            //echo '<h1>hola</h1>';
             $product = $connection->query("select * from products where id = '$purchase->id_product' ");
               while($prod=$product->fetch_object()){
                 $products = $prod;
@@ -60,8 +51,7 @@ if(empty($_SESSION["id"])){
             }
             if (!($developer_user != $_SESSION["id"] OR $developer_user != "None" ) OR  $payments->accreditationdate == NULL ){// esto verifica si tiene el nombre del desarrollador o no tiene ninguno asignado aun, y siempre y cuando ya ESTE FIJADO una fecha de inicio(cuando se apruebe el pago) 
                 continue;
-            }
-            //echo $_SESSION["id"];   
+            }  
             echo $payments->accreditationdate == NULL;  
 
 
@@ -78,29 +68,20 @@ if(empty($_SESSION["id"])){
             </text>
             <div class="ed">
                 <h2 class="price">-><?php 
-                if( $purchase->status == "ToDo"){
-                                 
-                    echo "<text class='cancelb danger'>".$purchase->status."</text>";
-
-                           
+                if( $purchase->status == "ToDo"){                    
+                    echo "<text class='cancelb danger'>".$purchase->status."</text>";              
                 } elseif($purchase->status == "InProgress"){
                     echo "<text class='processb caution'>".$purchase->status."</text>"; 
-
                 }elseif($purchase->status == "Done"){
                   echo "<text class='addb access'>".$purchase->status."</text>";
                   echo "<br><br><h3>".$purchase->finishdate."</h3>" ;
-
-                }
-                 
-                    ?></h2>
-                <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
+                }    
+                  ?></h2>
                 <button class="cautionButton" onclick="openModal('aprove','purchase',<?= $products->id ?>)">Change</button>
-                <!--<button class="dangerButton" onclick="openModal('report','purchase',<?= $products->id ?>)">Report</button>-->
             </div>
         </div>
         <!-- modal delete---------------------------------------------------------->
         <div id="modal_aprove_purchase#<?= $products->id ?>" class="modal">
-
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           
@@ -115,10 +96,8 @@ if(empty($_SESSION["id"])){
             </text>
             <div class="ed">
                 <h2 class="price">$<?php echo $products->price; ?></h2>
-
             </div>
         </div><br>
-        
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
             <input type="hidden" value="<?= $purchase->id ?>" name="id_update_purchase" placeholder="Title:">  
             <input type="hidden" value="<?= $developer->id ?>" name="id_developer" placeholder="Title:">  
@@ -131,34 +110,16 @@ if(empty($_SESSION["id"])){
             </select><br><br>
             <button class="cancelb" onclick="closeModal('aprove','purchase',<?= $products->id ?>)">Cancel</button>
             <button class="addb" name="updateStatusDeveloperPurchasebtn" type="submit" value="ok" >Update</button>
-            </form>
-            
+            </form>        
         </div>
-        </div>
-        
+        </div>   
         <?php
         }?>
-        <!-- intento de cerrar mediante window.onclick-->
-        
-
     </div>
     <footer>
 		<p>Derechos Reservados &copy; DigitCol</p>
     </footer>
     </div>
-    <div id="login-container">
-        <div class="login-content">
-            <button id="close-btn"></button>
-            <h2>Log in</h2>
-            <p>Ingrese sus datos de usuario</p>
-            <input type="text" id="username-input" placeholder="Usuario:">
-            <br>
-            <input type="password" id="password-input" placeholder="Contraseña:">
-            <br>
-            <button id="login-end-btn">Entrar</button>
-        </div>
-    </div>
-    
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

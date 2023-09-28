@@ -1,9 +1,7 @@
 <?php
+include_once "functions_controllers.php";
 $allsqlusers = $connection->query(" select * from users ");
-
-
-
-if(!empty($_POST["updateRolebtn"])){
+if(!empty($_POST["updateRolebtn"])){//actualizar los roles de los usuarios(solo admin)
     $id_user=$_POST["id_update_user"];
     $role=$_POST["roles"];
     $oldrole=$_POST["old_role"];
@@ -23,9 +21,7 @@ if(!empty($_POST["updateRolebtn"])){
         }elseif ($role == "Developer"){
             $add = $connection->query("insert into developers (`id`, `id_user`) VALUES (NULL, '$id_user') ");
         }
-
-    }
-    
+    }clearHistory();
 }
 if(!empty($_POST["updateAccountbtn"])){
     $id_user=$_POST["id_update_account"];
@@ -36,7 +32,6 @@ if(!empty($_POST["updateAccountbtn"])){
     $cellphone = $_POST["cellphone"];
     if ($cellphone == ""){
         $cellphone = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->cellphone;
-
     }else{
         echo 'No se dectecto el celular'.($cellphone == "");
     }
@@ -46,8 +41,7 @@ if(!empty($_POST["updateAccountbtn"])){
     }
     $sql = $connection->query( " update users set name='$name', cellphone = '$cellphone', password = '$password' where users.id=$id_user");
     if ($sql){
-        $sql=$connection->query(" select * from users where id= '$id_user' ");
-        // es el select de mysql con la base de datos
+        $sql=$connection->query(" select * from users where id= '$id_user' ");//select de la base de datos
         if ($dates=$sql->fetch_object()){//si sql devuelve una lista de atributos
             $_SESSION["id"]=$dates->id;//almacenando el id del usuario
             $_SESSION["name"]=$dates->name;
@@ -56,12 +50,8 @@ if(!empty($_POST["updateAccountbtn"])){
             $_SESSION["role"]=$dates->role;
             $_SESSION["cellphone"]=$dates->cellphone;
             header("location: account.php");
-
         }
-    }
-
-    
-    
+    }clearHistory();
 }
 if(!empty($_POST["deleteAccountBtn"])){
     $id_user=$_POST["id_update_account"];

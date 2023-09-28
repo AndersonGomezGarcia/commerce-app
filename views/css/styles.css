@@ -1,3 +1,8 @@
+
+html{
+    position: relative;
+    min-height: 100%;
+}
 *{
     margin: 0;
     padding: 0;
@@ -7,25 +12,20 @@ body{
     background-color: #D9D9D9;
     overflow-x: hidden;
     z-index: -3;
-    min-height: 100vh;
+    min-height: calc(100vh-50px);
     display: flex;
     flex-direction: column;
-
+    padding-bottom: 50px;
 }
 header{
     z-index: 4;
     position: sticky;
     position: -webkit-sticky;
-    top: 0;
-    
+    top: 0; 
 }
 nav{
-    top: 0;
-    position: -webkit-sticky;
     width: 60.5vw;
     height: 50px;
-    position: sticky;
-    z-index: 4;
     display: inline-flex;
     background: #201D22;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -38,11 +38,8 @@ nav ul{
 nav ul li{
     padding: 15px;
     display: inline-block;
-
 }
-
 nav ul li a{
-
     display: inline-flex;
     color: #CDCDCD;
     text-decoration: none;
@@ -119,8 +116,7 @@ nav ul li a:HOVER{
     transition: 0.6s;
     background-position: 60% 60%;
 }
-.log-in{
-    
+.log-in{   
     background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
     background-size: 200%;
     z-index: 3;
@@ -139,7 +135,6 @@ nav ul li a:HOVER{
     overflow: hidden;
     transition: 0.4s;
     box-shadow: #201D22 0px     0px 20px;
-
 }
 .log-in:hover{
     background-position: 100% 100%;
@@ -153,11 +148,9 @@ nav ul li a:HOVER{
     text-decoration: none;
     color: #201D22;
     font-weight: bolder;
-    font-size: larger;
-    
+    font-size: larger; 
     margin: auto;
 }
-
 .catalogue{
     margin: 35vw 100px 20px 100px;
     width: calc(100vw - 200px);
@@ -174,7 +167,6 @@ nav ul li a:HOVER{
 /*---------------------------------------------------------
  init uptades to products dot php
 ----------------------------------------------------*/
-
 .card_seller{
     width: 60vw;
     height: auto;
@@ -187,7 +179,6 @@ nav ul li a:HOVER{
     border-radius: 25px;
     color: #D9D9D9;
     display: inline-flex;
-
     position: relative;
     transition: 0.7s;
 }
@@ -233,77 +224,51 @@ nav ul li a:HOVER{
     margin-top: 30px;
     margin-right: 30px;
 }
-
 button.addp{
     padding: 27px!important;
     float: right;
     margin-right: 15vw;
     margin-top: 0;
 }
-
+.ed button, button.addp, .addb, .cancelb,.card button{
+    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
+}
 .ed button, button.addp, .addb, .cancelb{
+    margin-left: 20px; 
+    word-break: keep-all!important;
+}
+.card button{
+    width: 100px;
+    margin-right: 50px;
+    position: absolute;
+    bottom: 22px;
+    right: 0px;
+}
+.accessButton,.dangerButton,.cautionButton{
+    word-break: keep-all!important;
+}
+.accessButton,.dangerButton,.cautionButton,.ed button, button.addp, .addb, .cancelb,.card button{
     margin-left: 20px;
-    color: black;
     color: #201D22;
     font-weight: bolder;
     font-size: large;
     padding: 12px;
-    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
-    background-size: 200%;
     border: none;
     border-radius: 8px;
-    background-position: 100% 100%;
-    transition: 1s;
-    word-break: keep-all!important;
+    transition: 1s!important;
+    background-position: 100% 100%!important;
+    background-size: 200%!important;
 }
 .accessButton{
-    margin-left: 20px;
-    color: black;
-    color: #201D22;
-    font-weight: bolder;
-    font-size: large;
-    padding: 12px;
     background: linear-gradient(to right ,#0fbc03,#0c7401,#0c7401,#0fbc03)!important;
-    background-size: 200%!important;
-    border: none;
-    border-radius: 8px;
-    background-position: 100% 100%!important;
-    transition: 1s!important;
-    word-break: keep-all!important;
 }
-
 .dangerButton{
-    margin-left: 20px;
-    color: black;
-    color: #201D22;
-    font-weight: bolder;
-    font-size: large;
-    padding: 12px;
-    background: linear-gradient(to right ,#ff444d,#ff2a2a,#ff2a2a,#fb3e48)!important;
-    background-size: 200%!important;
-    border: none;
-    border-radius: 8px;
-    background-position: 100% 100%!important;
-    transition: 1s!important;
-    word-break: keep-all!important;
+    background: linear-gradient(to right ,#fb3e48,#ff2a2a,#ff2a2a,#fb3e48)!important;
 }
 .cautionButton{
-    margin-left: 20px;
-    color: black;
-    color: #201D22;
-    font-weight: bolder;
-    font-size: large;
-    padding: 12px;
     background: linear-gradient(to right ,#ff9c39,#e96421,#e96421,#ff9c39)!important;
-    background-size: 200%!important;
-    border: none;
-    border-radius: 8px;
-    background-position: 100% 100%!important;
-    transition: 1s!important;
-    word-break: keep-all!important;
 }
-button.addp:hover,button.update_button:hover ,button.delete_button:hover, .accessButton:hover,.dangerButton:hover,.cautionButton:hover{
-    cursor: pointer!;
+button.addp:hover,button.update_button:hover ,button.delete_button:hover, .accessButton:hover,.dangerButton:hover,.cautionButton:hover,.addb:hover,.cancelb:hover{
     background-position: 200% 00%!important;
     transition: 0.3s;
     cursor: pointer;
@@ -313,8 +278,6 @@ button.addp:hover,button.update_button:hover ,button.delete_button:hover, .acces
     font-style: normal;
     font-weight: 100;
 }
-
-/*asdasdasd*/
 .products{
     margin-top: 50px!important;
 }
@@ -324,14 +287,12 @@ button.addp:hover,button.update_button:hover ,button.delete_button:hover, .acces
     max-width: 50vw;
     height:auto;
     margin-left: 15vw;
-    left: 0px;
     float: left;
     display: inline-block; 
 }
 /*--------------------------------------------------------
 end uptades to products dot php
 --------------------------------------------------------------*/
-
 .card{
     width: 450px;
     height: 550px;
@@ -346,13 +307,11 @@ end uptades to products dot php
     position: relative;
     transition: 0.7s;
 }
-
 .card:hover, .card_seller:hover{
     transform: translateY(-10px);
     transition: 0.3s;
     box-shadow: 0 0 25px 0 #A144FF
 }
-
 .card .image{
     margin: 20px 15px 20px 15px; 
     width: calc(100% - 30px);
@@ -367,19 +326,16 @@ end uptades to products dot php
     background-position: center;
     transition: 1s;
 }
-
 .card .image img,.card_seller .image img{
     width: 100%;
     height: auto;
     background-size: cover;
     height: 150%;
 }
-
 .card .image:hover{
     background-size: 135%;
     transition: 0.6s;
 }
-
 .subtittle{
     margin-left: 15px;
     text-align: left;
@@ -404,132 +360,15 @@ end uptades to products dot php
     position: absolute;
     bottom: 30px;
 }
-.card button{
-    color: #201D22;
-    font-weight: bolder;
-    font-size: large;
-    width: 100px;
-    padding: 12px;
-    margin-right: 50px;
-    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
-    background-size: 200%;
-    border: none;
-    border-radius: 8px;
-    transition: 1s;
-    position: absolute;
-    bottom: 22px;
-    right: 0px;
-}
-
 .card button:hover{
     background-position: 100%;
     transition: 0.6s;
     cursor: pointer;
     color: #000;
-
 }
-#login-container {
-    display: none;
-    z-index: 6;
-    position: absolute;
-    width: 50vw;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #D9D9D9;
-    padding: 20px;
-    border-radius: 40px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-#login-container .login-content{
-    width: 70%;
-    padding: 5% 15% 5% 15%;
-    display: flexbox;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    position: relative;
-    background-color: #D9D9D9;
-}
-
-#login-container .login-content #close-btn{
-    position: absolute;
-    border: none;
-    height: 50px;
-    width: 50px;
-    top: 10px;
-    right: 10px;
-    background-image: url(x.png), linear-gradient(#D9D9D9,#D9D9D9);
-    background-size: contain;
-    transition: 1s;
-    opacity: 0.7;
-    
-}
-#login-container .login-content #close-btn:hover{
-    transform: rotate(90deg);
-    transition: 0.6s;
-    opacity: 1;
-}
-#login-container .login-content h2{
-    top: 0;
-    font-size: xx-large;
-    margin-bottom: 25px;
-    color: #201D22;
-}
-#login-container .login-content p{
-    margin-bottom: 20px;
-}
-#login-container .login-content label{
-    border: none;
-}
-#login-container .login-content input{
-    margin: 10px 10px 10px 0;
-    width: 100%;
-    border: none;
-    display: block;
-    border-bottom:1px solid #201D22;
-    background-color: transparent;
-    font-size: large;
-}
-#acerca p{
-    text-align: justify;
-}
-
-#login-end-btn{
-    color: #201D22;
-    font-weight: bolder;
-    font-size: large;
-    width: 100px;
-    padding: 15px;
-    margin-right: 135px;
-    margin-bottom: 0px;
-    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
-    background-size: 200%;
-    border: none;
-    border-radius: 8px;
-    transition: 1s;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-}
-#login-end-btn:hover{
-    background-position: 100%;
-    transition: 0.6s;
-    cursor: pointer;
-}
-div#blur{
-    z-index: 5;
-    top: 0;
-    transition: 1s;
-
-    
-}
-
 section{
     margin: 50px 15% 25px 15% ;
 }
-
 .container-chat{
     background-color: #201D22;
     border-radius: 325px;
@@ -549,76 +388,22 @@ section{
     color: #A3A3A3;
     font-weight: 400;
     margin-right: 25px;
-
-
 }
 .container-chat .user{
     top: 50%;
     position: absolute;
     left: 15%;
-
 }
 .container-chat .user img{
     width: 15%;
 }
-.chat{
-    overflow-y:  visible;
-
-}
-.chat div{
-    background: linear-gradient(to right ,#376FFF,#A144FF,#A144FF,#376FFF);
-    background-size: 200%;
-    margin-top: 15px;
-    border-radius: 25px;
-    max-width: 70%;
-    padding: 9px;
-    transition: 1s;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-
-}
-.chat div:hover{
-    background-position: 100%;
-    transition: 0.6s;
-}
-.me-chat{
-    float: right;
-    margin-left: 30%;
-    margin-right: 15%;
-}
-.second-chat{
-    float: left;
-    margin-left: 15%;
-    margin-right: 30%;
-}
-.writting{
-    width: 100%;
-}
-.writting input{
-    margin: none;
-    border: none;
-    border-radius: 25px;
-    margin-top: 25px;
-    width: 70%;
-    background-color: #D9D9D9;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    color: #201D22;
-    padding: 5px;
-    bottom: 0;
-    float: left;
-    margin-left: 15%;
-}
-.writting::placeholder{
-    color: black;
-}
 footer{
-    float: inline-end;
     color: #D9D9D9;
     padding: 25px;
     width: 100vw;
     background-color: #201D22;
-    margin-top: auto;
-    margin-bottom: 0px;
     bottom: 0px;
+    position: absolute;
 }
 .user_svg{
     margin-left: 15px!important;
@@ -659,9 +444,7 @@ footer{
     background-position: 0% 0%;
     border: #dc3545 solid 1px ;
     background-color: #f55b6a;
-
 }
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -676,7 +459,6 @@ footer{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
   /* Modal Content */
   .modal-content {
     background-color: #D9D9D9;
@@ -687,7 +469,6 @@ footer{
     border-radius: 25px;
     margin-bottom: 12%;
   }
-  
   /* The Close Button */
   .close {
     color: #aaaaaa;
@@ -695,7 +476,6 @@ footer{
     font-size: 28px;
     font-weight: bold;
   }
-  
   .close:hover,
   .close:focus {
     color: #000;
@@ -703,7 +483,6 @@ footer{
     cursor: pointer;
   }
   /*asdasdasdasda*/
-
   h3{
     font-weight: 100;
   }
@@ -713,7 +492,6 @@ footer{
     margin-bottom: 25px;
     font-size: 25px;
   }
-
   .form_add input, .form_add textarea{
     width: 50%;
     padding: .35em;
@@ -735,20 +513,11 @@ footer{
   select#roles option{
     border: .2em solid #376FFF !important;
   }
-  .addi{
-	background: rgba(#E91E63, .2);
-}
-.fz{
-    font-size: 22px;
-}
-
-
 label.a{
     font-size: 30px;
     margin-left: 24.5%;
     float: left;
 }
-
 .file_add{
     background:transparent!important;
     border: none!important;
@@ -759,7 +528,7 @@ label.a{
     border-radius: 7px;
     color: #376FFF;
 }
-.addb, .alert_a, .crystalAccessButton{/*boton de agregar en crud*/
+.addb, .alert_a, .crystalAccessButton, .accessb{/*boton de agregar en crud*/
     background: rgb(109, 234, 109);
     border: .2em solid rgb(0, 141, 0);
     padding: 20px;
@@ -767,16 +536,12 @@ label.a{
     color: #074800;
     transition: 0.6s;
 }
-
 .accessb{/*boton de agregar en crud*/
-    background: rgb(109, 234, 109);
-    border: .2em solid rgb(0, 141, 0);
-    padding: 20px;
-    font-size: 22px;
-    color: #074800;
-    transition: 0.6s;
     width: fit-content;
     float: right;
+}
+.access, .colorgreen{
+    color: rgb(0, 115, 0)!important;
 }
 .cancelb, .alert_d, .crystalDangerButton{/*boton de agregar en crud*/
     background: rgb(238,96,120);
@@ -794,7 +559,6 @@ label.a{
 .addb:hover, .alert_a:hover, .crystalAccessButton:hover{
     background: rgb(62, 224, 62);
     transition: 0.2s;
-
 }
 .alert, .alert_a , .alert_d{
     width: 10vw;
@@ -806,9 +570,6 @@ label.a{
 }
 .danger{
     color: rgb(132, 1, 23)!important;
-}
-.access, .colorgreen{
-    color: rgb(0, 115, 0)!important;
 }
 .colorblue{
     color: #376FFF;
@@ -831,7 +592,6 @@ text.user{
     width: 77%;
 }
 /* todo lo referente a account.php*/
-
 .card_account{
     display: flex;
     margin: 6% 20% 6% 20%;
@@ -850,10 +610,6 @@ h1,h2,h3,.subtittle{
     width: auto;
     color: rgb(106, 19, 0);
     font-size: 22px;
-}
-
-.m_auto{
-    margin: auto;;
 }
 .cautionb{/*boton de agregar en crud*/
     background: rgb(255, 136, 71);
@@ -878,23 +634,17 @@ h1,h2,h3,.subtittle{
 .process{
     color: rgb(0, 128, 255)!important;
 }
-
 .processb:hover{
     background: rgb(15, 191, 230);
     transition: 0.4s;
 }
-.addb:hover,.cancelb:hover{
-    cursor: pointer!important;
-}
-
 #imageAbout img{
     border-radius: 35px;
     width: 100%;
     background: black;
     box-shadow: black 0px 0px 10px ;
 }
-
-section h2{
+section h2, .fz{
     font-size: xx-large;
     margin-bottom: 9px;
 }
