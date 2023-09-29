@@ -1,0 +1,11 @@
+"filename", "language", "PHP", "comment", "blank", "total"
+"c:\xampp\htdocs\commerce-app\controllers\controller_login.php", "PHP", 0, 0, 1, 1
+"c:\xampp\htdocs\commerce-app\controllers\controller_session.php", "PHP", 12, 1, 1, 14
+"c:\xampp\htdocs\commerce-app\models\connection.php", "PHP", 21, 4, 8, 33
+"c:\xampp\htdocs\commerce-app\models\user.php", "PHP", 60, 45, 14, 119
+"c:\xampp\htdocs\commerce-app\views\index.php", "PHP", 1, 0, 0, 1
+"c:\xampp\htdocs\commerce-app\views\payments.php", "PHP", 0, -2, -2, -4
+"c:\xampp\htdocs\commerce-app\views\products.php", "PHP", 1, 0, 0, 1
+"c:\xampp\htdocs\commerce-app\views\signup.php", "PHP", 0, 0, -19, -19
+"c:\xampp\htdocs\commerce-app\views\users.php", "PHP", -4, -2, 0, -6
+"Total", "-", 91, 46, 3, 140

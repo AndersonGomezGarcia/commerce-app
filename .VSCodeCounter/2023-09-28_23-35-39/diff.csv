@@ -1,0 +1,10 @@
+"filename", "language", "PHP", "comment", "blank", "total"
+"c:\xampp\htdocs\commerce-app\models\connection.php", "PHP", 0, 0, -3, -3
+"c:\xampp\htdocs\commerce-app\views\account.php", "PHP", -2, -1, -4, -7
+"c:\xampp\htdocs\commerce-app\views\developer_tasks.php", "PHP", -4, 0, 0, -4
+"c:\xampp\htdocs\commerce-app\views\development_tasks.php", "PHP", -4, 0, -1, -5
+"c:\xampp\htdocs\commerce-app\views\payments.php", "PHP", -4, 0, 0, -4
+"c:\xampp\htdocs\commerce-app\views\products.php", "PHP", -4, -2, 0, -6
+"c:\xampp\htdocs\commerce-app\views\purchases.php", "PHP", -4, 0, 0, -4
+"c:\xampp\htdocs\commerce-app\views\purchases_client.php", "PHP", -4, -2, -2, -8
+"Total", "-", -26, -5, -10, -41

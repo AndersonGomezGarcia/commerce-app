@@ -1,0 +1,65 @@
+Date : 2023-09-28 23:35:39
+Directory : c:\xampp\htdocs\commerce-app
+Total : 31 files,  2451 codes, 99 comments, 138 blanks, all 2688 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| PHP        |         24 |      1,690 |         77 |         97 |      1,864 |
+| CSS        |          1 |        639 |         13 |          5 |        657 |
+| JavaScript |          1 |         59 |          9 |         26 |         94 |
+| XML        |          3 |         39 |          0 |          3 |         42 |
+| Markdown   |          2 |         24 |          0 |          7 |         31 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                               | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                  |         31 |      2,451 |         99 |        138 |      2,688 |
+| . (Files)                                                          |          1 |         23 |          0 |          7 |         30 |
+| controllers                                                        |         11 |        345 |          3 |          9 |        357 |
+| models                                                             |          2 |         85 |         51 |         21 |        157 |
+| views                                                              |         17 |      1,998 |         45 |        101 |      2,144 |
+| views (Files)                                                      |         13 |      1,320 |         32 |         93 |      1,445 |
+| views\css                                                          |          4 |        678 |         13 |          8 |        699 |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                           | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp\htdocs\commerce-app\README.md                             | Markdown   |         23 |          0 |          7 |         30 |
+| c:\xampp\htdocs\commerce-app\controllers\README.md                 | Markdown   |          1 |          0 |          0 |          1 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_html.php       | PHP        |         58 |          0 |          1 |         59 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_login.php      | PHP        |         23 |          2 |          2 |         27 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_payments.php   | PHP        |         27 |          0 |          0 |         27 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_products.php   | PHP        |         55 |          0 |          1 |         56 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_purchases.php  | PHP        |         69 |          0 |          2 |         71 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_session.php    | PHP        |         12 |          1 |          1 |         14 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_signoff.php    | PHP        |          5 |          0 |          0 |          5 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_signup.php     | PHP        |         22 |          0 |          0 |         22 |
+| c:\xampp\htdocs\commerce-app\controllers\controller_users.php      | PHP        |         59 |          0 |          1 |         60 |
+| c:\xampp\htdocs\commerce-app\controllers\functions_controllers.php | PHP        |         14 |          0 |          1 |         15 |
+| c:\xampp\htdocs\commerce-app\models\connection.php                 | PHP        |         25 |          6 |          7 |         38 |
+| c:\xampp\htdocs\commerce-app\models\user.php                       | PHP        |         60 |         45 |         14 |        119 |
+| c:\xampp\htdocs\commerce-app\views\about.php                       | PHP        |         57 |          0 |          0 |         57 |
+| c:\xampp\htdocs\commerce-app\views\account.php                     | PHP        |        104 |          0 |         14 |        118 |
+| c:\xampp\htdocs\commerce-app\views\css\Group 27.svg                | XML        |         14 |          0 |          1 |         15 |
+| c:\xampp\htdocs\commerce-app\views\css\person.svg                  | XML        |         14 |          0 |          1 |         15 |
+| c:\xampp\htdocs\commerce-app\views\css\styles.css                  | CSS        |        639 |         13 |          5 |        657 |
+| c:\xampp\htdocs\commerce-app\views\css\user.svg                    | XML        |         11 |          0 |          1 |         12 |
+| c:\xampp\htdocs\commerce-app\views\developer_tasks.php             | PHP        |        112 |          3 |          9 |        124 |
+| c:\xampp\htdocs\commerce-app\views\development_tasks.php           | PHP        |        109 |          0 |          2 |        111 |
+| c:\xampp\htdocs\commerce-app\views\index.php                       | PHP        |         82 |          0 |          0 |         82 |
+| c:\xampp\htdocs\commerce-app\views\login.php                       | PHP        |         61 |          3 |         18 |         82 |
+| c:\xampp\htdocs\commerce-app\views\payments.php                    | PHP        |        159 |          4 |          8 |        171 |
+| c:\xampp\htdocs\commerce-app\views\products.php                    | PHP        |        127 |          3 |          7 |        137 |
+| c:\xampp\htdocs\commerce-app\views\purchases.php                   | PHP        |        120 |          3 |          4 |        127 |
+| c:\xampp\htdocs\commerce-app\views\purchases_client.php            | PHP        |         89 |          4 |          1 |         94 |
+| c:\xampp\htdocs\commerce-app\views\script.js                       | JavaScript |         59 |          9 |         26 |         94 |
+| c:\xampp\htdocs\commerce-app\views\signup.php                      | PHP        |         78 |          3 |          2 |         83 |
+| c:\xampp\htdocs\commerce-app\views\users.php                       | PHP        |        163 |          0 |          2 |        165 |
+| Total                                                              |            |      2,451 |         99 |        138 |      2,688 |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+

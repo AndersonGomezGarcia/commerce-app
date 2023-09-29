@@ -1,13 +1,7 @@
 <?php
+include "../controllers/controller_session.php";
 session_start();
-if(empty($_SESSION["id"])){
-  //$active = false;
-    //header("location: login.php");
-    header("location: login.php");
-    if (!$_SESSION["role"] == "Seller"){
-      header("location: index.php");
-    }
-}
+checkSessionAndRedirect($requiredRole = "Seller");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +49,7 @@ if(empty($_SESSION["id"])){
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
         while($products=$sqlproducts->fetch_object()){
+          if(!$products->status) continue;//si tiene el estatus como desactivado
           ?>
         <div class="card_seller">
         <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>

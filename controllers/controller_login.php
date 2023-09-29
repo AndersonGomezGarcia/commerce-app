@@ -23,4 +23,5 @@ if(!empty($_POST{"btnlogin"})){//verifica que el boton de logi nse presiona
         echo "Por favor completa los datos";
     }
 }
+
 ?>

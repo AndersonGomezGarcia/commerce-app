@@ -1,18 +1,18 @@
 # Summary
 
-Date : 2023-09-27 23:47:27
+Date : 2023-09-28 23:20:51
 
 Directory c:\\xampp\\htdocs\\commerce-app
 
-Total : 28 files,  2889 codes, 89 comments, 424 blanks, all 3402 lines
+Total : 31 files,  2477 codes, 104 comments, 148 blanks, all 2729 lines
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| PHP | 21 | 1,930 | 66 | 332 | 2,328 |
-| CSS | 1 | 837 | 14 | 56 | 907 |
+| PHP | 24 | 1,716 | 82 | 107 | 1,905 |
+| CSS | 1 | 639 | 13 | 5 | 657 |
 | JavaScript | 1 | 59 | 9 | 26 | 94 |
 | XML | 3 | 39 | 0 | 3 | 42 |
 | Markdown | 2 | 24 | 0 | 7 | 31 |
@@ -20,12 +20,12 @@ Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 28 | 2,889 | 89 | 424 | 3,402 |
+| . | 31 | 2,477 | 104 | 148 | 2,729 |
 | . (Files) | 1 | 23 | 0 | 7 | 30 |
-| controllers | 9 | 328 | 18 | 61 | 407 |
-| models | 1 | 4 | 2 | 2 | 8 |
-| views | 17 | 2,534 | 69 | 354 | 2,957 |
-| views (Files) | 13 | 1,658 | 55 | 295 | 2,008 |
-| views\\css | 4 | 876 | 14 | 59 | 949 |
+| controllers | 11 | 345 | 3 | 9 | 357 |
+| models | 2 | 85 | 51 | 24 | 160 |
+| views | 17 | 2,024 | 50 | 108 | 2,182 |
+| views (Files) | 13 | 1,346 | 37 | 100 | 1,483 |
+| views\\css | 4 | 678 | 13 | 8 | 699 |
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

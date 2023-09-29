@@ -1,11 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
-  //$active = false;
-    
-}
 ?>
-
 <html lang="en">
 <head>
 <?php  include "../controllers/controller_html.php"; head("Account"); ?>
@@ -15,9 +10,7 @@ if(empty($_SESSION["id"])){
     <header>
       <?= nav(); ?>
     </header>
-
     <?php
-
 include "../models/connection.php";
 include "../controllers/controller_users.php";
 ?>

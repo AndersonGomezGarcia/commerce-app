@@ -28,6 +28,7 @@ if (empty($_SESSION["id"])) {
       include "../controllers/controller_products.php";
       include "../controllers/controller_purchases.php";
       while ($products = $sqlproducts->fetch_object()) {
+        if (!$products->status) continue;
       ?>
         <!-- Aca empieza el for each de la lista de products---------------------------------------------------------------->
         <div class="card">

@@ -1,13 +1,7 @@
 <?php
+include "../controllers/controller_session.php";
 session_start();
-if(empty($_SESSION["id"])){
-  //$active = false;
-    //header("location: login.php");
-    header("location: login.php");
-    if (!$_SESSION["role"] == "Seller"){
-      header("location: index.php");
-    }
-}
+checkSessionAndRedirect($requiredRole = "Sellers");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +25,6 @@ if(empty($_SESSION["id"])){
         include "../controllers/controller_products.php";
         include "../controllers/controller_purchases.php";
         include "../controllers/controller_payments.php";
-
         //-----------------------------------------------------------------------------------------------------------------------------------
         //esto es como un foreach para extrear los datos de products
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -165,7 +158,6 @@ if(empty($_SESSION["id"])){
         
         <?php
         }?>
-
     </div>
     <footer>
 		<p>Derechos Reservados &copy; DigitCol</p>

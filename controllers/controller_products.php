@@ -51,6 +51,6 @@ if(!empty($_POST["updatebtn"])){//actualizar productos
 }
 if(!empty($_POST["deletebtn"])){//eliminar productos
     $id=$_POST["id_delete"];
-    $sql = $connection->query(" delete from products where products.id='$id' ");
+    $sql = $connection->query(" update products set status = 0 where products.id='$id' ");
     clearHistory();
 }?>

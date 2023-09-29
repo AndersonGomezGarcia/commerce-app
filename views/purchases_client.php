@@ -1,16 +1,8 @@
 <?php
-
 use function PHPSTORM_META\type;
-
+include "../controllers/controller_session.php";
 session_start();
-if(empty($_SESSION["id"])){
-  //$active = false;
-    //header("location: login.php");
-    header("location: login.php");
-    if (!$_SESSION["role"] == "Seller"){
-      header("location: index.php");
-    }
-}
+checkSessionAndRedirect($requiredRole = "Client");
 ?>
 <!DOCTYPE html>
 <html lang="en">

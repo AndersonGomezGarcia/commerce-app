@@ -1,11 +1,7 @@
 <?php
+include "../controllers/controller_session.php";
 session_start();
-if(empty($_SESSION["id"])){
-    header("location: login.php");
-    if (!$_SESSION["role"] == "Seller"){
-      header("location: index.php");
-    }
-}
+checkSessionAndRedirect($requiredRole = "Developer");
 ?>
 <!DOCTYPE html>
 <html lang="en">

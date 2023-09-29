@@ -1,13 +1,7 @@
 <?php
+include "../controllers/controller_session.php";
 session_start();
-if (empty($_SESSION["id"])) {
-  //$active = false;
-  //header("location: login.php");
-  header("location: login.php");
-  if (!$_SESSION["role"] == "Admin") {
-    header("location: index.php");
-  }
-}
+checkSessionAndRedirect($requiredRole = "Admin");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,57 +41,62 @@ if (empty($_SESSION["id"])) {
       <?php
       include "../models/connection.php";
       include "../controllers/controller_products.php";
-      include "../controllers/controller_users.php";
-      while ($users = $allsqlusers->fetch_object()) {//recorre los usuarios
+      include_once "../controllers/controller_users.php";
+      // Instancia UserController pasándole la conexión a la base de datos
+      $userController = new User_Controller($connection);
+
+      // Obtén todos los usuarios
+      $allUsers = $userController->getAllUsers();
+      foreach ($allUsers as $user){
       ?>
         <div class="card_seller">
           <text class="user">
             <h2 class="tittle bigsize">
-              <div class="colorgreen">id: #<?php echo $users->id; ?></div>
+              <div class="colorgreen">id: #<?php echo $user->getId() ; ?></div>
             </h2>
             <h2 class="subtittle">
               <div class="colorfuxy">Name:</div>
-              <div class="colorblue"><?php echo $users->name; ?></div>
+              <div class="colorblue"><?php echo $user->getName(); ?></div>
             </h2>
             <h2 class="subtittle">
               <div class="colorfuxy">Email: </div>
-              <div class="colorblue"><?php echo $users->email; ?></div>
+              <div class="colorblue"><?php echo $user->getEmail(); ?></div>
             </h2>
             <h2 class="subtittle">
               <div class="colorfuxy">Role:</div>
-              <div class="colorblue"> <?php echo $users->role; ?> </div>
+              <div class="colorblue"> <?php echo $user->getRole(); ?> </div>
             </h2>
           </text>
           <div class="ed">
             <h2 class="price">Options</h2>
             <!--El boton usa javascript del script.js para su funcionalidad de pop up con el modificar -->
-            <button class="accessButton" onclick="openModal('update' , 'user' , <?= $users->id ?>)">Update Role</button>
-            <button class="dangerButton" onclick="openModal('delete','user',<?= $users->id ?>)">Delete</button>
+            <button class="accessButton" onclick="openModal('update' , 'user' , <?= $user->getId() ?>)">Update Role</button>
+            <button class="dangerButton" onclick="openModal('delete','user',<?= $user->getId() ?>)">Delete</button>
           </div>
         </div>
         <!-- The Modal update para users--------------------->
-        <div id="modal_update_user#<?= $users->id ?>" class="modal">
+        <div id="modal_update_user#<?= $user->getId() ?>" class="modal">
           <!-- Modal content update ----------------------->
           <div class="modal-content">
-            <span class="close" onclick="closeModal( 'update','user',<?= $users->id ?>)">&times;</span>
-            <h1>Update a the role of User#<?= $users->id ?></h1>
+            <span class="close" onclick="closeModal( 'update','user',<?= $user->getId() ?>)">&times;</span>
+            <h1>Update a the role of User#<?= $user->getId() ?></h1>
             <h3 class="subtitled_add">Choose a role:</h3>
             <div class="card_seller">
               <text class="user">
                 <h2 class="tittle bigsize">
-                  <div class="colorgreen">id: #<?php echo $users->id; ?></div>
+                  <div class="colorgreen">id: #<?php echo $user->getId(); ?></div>
                 </h2>
                 <h2 class="subtittle">
                   <div class="colorfuxy">Name:</div>
-                  <div class="colorblue"><?php echo $users->name; ?></div>
+                  <div class="colorblue"><?php echo $user->getName(); ?></div>
                 </h2>
                 <h2 class="subtittle">
                   <div class="colorfuxy">Email: </div>
-                  <div class="colorblue"><?php echo $users->email; ?></div>
+                  <div class="colorblue"><?php echo $user->getEmail(); ?></div>
                 </h2>
                 <h2 class="subtittle">
                   <div class="colorfuxy">Role:</div>
-                  <div class="colorblue"> <?php echo $users->role; ?> </div>
+                  <div class="colorblue"> <?php echo $user->getRole(); ?> </div>
                 </h2>
               </text>
               <div class="ed">
@@ -105,8 +104,8 @@ if (empty($_SESSION["id"])) {
               </div>
             </div>
             <form class="form_add" action="" enctype="multipart/form-data" method="POST">
-              <input type="hidden" value="<?= $users->id ?>" name="id_update_user">
-              <input type="hidden" value="<?= $users->role ?>" name="old_role">
+              <input type="hidden" value="<?= $user->getId() ?>" name="id_update_user">
+              <input type="hidden" value="<?= $user->getRole() ?>" name="old_role">
               <labe class="fz">Rol:</label>
                 <input type="hidden" select="roles" name="roles" id="browser"><!-- list= hace referencia al la datalist que usara como datos-->
                 <select id="roles" name="roles">
@@ -114,34 +113,34 @@ if (empty($_SESSION["id"])) {
                   <option name="Seller" value="Seller">Seller</option>
                   <option name="Developer" value="Developer">Developer</option>
                 </select><br><br>
-                <button class="cancelb" onclick="closeModal('update','user',<?= $users->id ?>)">Cancel</button>
+                <button class="cancelb" onclick="closeModal('update','user',<?= $user->getId() ?>)">Cancel</button>
                 <button class="addb" name="updateRolebtn" type="submit" value="ok">Update role</button>
             </form>
           </div>
         </div>
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_delete_user#<?= $users->id ?>" class="modal">
+        <div id="modal_delete_user#<?= $user->getId() ?>" class="modal">
           <!-- Modal content delete-------------------------------------- -->
           <div class="modal-content">
-            <span class="close" onclick="closeModal('delete','user',<?= $users->id ?>)">&times;</span>
+            <span class="close" onclick="closeModal('delete','user',<?= $user->getId() ?>)">&times;</span>
             <h1 class="danger">Delete a Product:</h1>
             <h3 class="subtitled_add danger">Are you sure of delete this item?:</h3>
             <div class="card_seller">
               <text class="user">
                 <h2 class="tittle bigsize">
-                  <div class="colorgreen">id: #<?php echo $users->id; ?></div>
+                  <div class="colorgreen">id: #<?php echo $user->getId(); ?></div>
                 </h2>
                 <h2 class="subtittle">
                   <div class="colorfuxy">Name:</div>
-                  <div class="colorblue"><?php echo $users->name; ?></div>
+                  <div class="colorblue"><?php echo $user->getId(); ?></div>
                 </h2>
                 <h2 class="subtittle">
                   <div class="colorfuxy">Email: </div>
-                  <div class="colorblue"><?php echo $users->email; ?></div>
+                  <div class="colorblue"><?php echo $user->getEmail(); ?></div>
                 </h2>
                 <h2 class="subtittle">
                   <div class="colorfuxy">Role:</div>
-                  <div class="colorblue"> <?php echo $users->role; ?> </div>
+                  <div class="colorblue"> <?php echo $user->getRole(); ?> </div>
                 </h2>
               </text>
               <div class="ed">
@@ -149,9 +148,9 @@ if (empty($_SESSION["id"])) {
               </div>
             </div>
             <form class="form_add" action="" enctype="multipart/form-data" method="POST">
-              <input type="hidden" value="<?= $users->id ?>" name="id_user_delete" placeholder="Title:">
+              <input type="hidden" value="<?= $user->getId() ?>" name="id_user_delete" placeholder="Title:">
               <br><br>
-              <button class="addb" onclick="closeModal('delete','user',<?= $users->id ?>)">Cancel</button>
+              <button class="addb" onclick="closeModal('delete','user',<?= $user->getId() ?>)">Cancel</button>
               <button class="cancelb" name="deletebtn" type="submit" value="ok">Delete</button>
             </form>
           </div>
