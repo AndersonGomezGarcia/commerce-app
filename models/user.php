@@ -172,5 +172,6 @@ class User {
             $data['role']
         );
     }
+
 }
 ?>

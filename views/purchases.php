@@ -1,7 +1,7 @@
 <?php
 include "../controllers/controller_session.php";
 session_start();
-checkSessionAndRedirect($requiredRole = "Admin");
+checkSessionAndRedirect($requiredRole = "Seller");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -20,6 +20,7 @@ function nav(){
     
                       <li><a class="menu-text" href="users.php">Users</a></li>
                       <li><a class="menu-text" href="development_tasks.php">tasks</a></li>
+                      <li><a class="menu-text" href="backups.php">Backups</a></li>
                      <?php }
                     }elseif($_SESSION["role"] == "Developer"){?>
                       <li><a class="menu-text" href="developer_tasks.php">tasks</a></li>

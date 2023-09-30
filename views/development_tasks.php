@@ -83,7 +83,7 @@ checkSessionAndRedirect($requiredRole = "Seller");
             </div>
         </div><br>
           <form class="form_add" action="" enctype="multipart/form-data" method="POST" > <br>
-            <input class="addi" type="hidden" value="<?= $purchase->id ?>" name="id_update_purchase" placeholder="Title:">  
+            <input type="hidden" value="<?= $purchase->id ?>" name="id_update_purchase" placeholder="Title:">  
             <label>New Status of the task:</label>
             <input type="hidden" select="status" name="roles" id="browser"><!-- list= hace referencia al la datalist que usara como datos-->
             <select id="roles" name="status" >

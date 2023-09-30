@@ -1,7 +1,7 @@
 <?php
 include "../controllers/controller_session.php";
 session_start();
-checkSessionAndRedirect($requiredRole = "Sellers");
+checkSessionAndRedirect($requiredRole = "Seller");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +60,8 @@ checkSessionAndRedirect($requiredRole = "Sellers");
           <!-- Modal content delete-------------------------------------- -->
           <div class="modal-content">
             <span class="close" onclick="closeModal('disapprove','payments',<?= $payments->id ?>)">&times;</span>
-            <h1 class="access">Aprove a Payment:</h1>
-            <h3 class="subtitled_add access">Are you sure of aprove this payment?:</h3>
+            <h1 class="caution">Disapprove a Payment:</h1>
+            <h3 class="subtitled_add caution">Are you sure of disapprove this payment?:</h3>
             <div class="card_seller alert">
           <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia)?>"></div>
             <text>

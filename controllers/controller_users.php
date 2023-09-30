@@ -36,6 +36,7 @@ class User_Controller {
             return [];
         }
     }
+    
 }
 $allsqlusers = $connection->query(" select * from users ");
 
@@ -64,6 +65,8 @@ function getUserById($id) {
         return null; // Si no se encuentra el usuario, devuelve null
     }
 }
+
+
 
 // Función para eliminar el registro de un cliente
 function deleteClientRecord($id_user) {
@@ -131,7 +134,6 @@ function updateUserInDatabase($user) {
 
 
 
-
 if (!empty($_POST["updateRolebtn"])) {
     // Obtiene el ID de usuario, el nuevo rol y el antiguo rol
     $id_user = $_POST["id_update_user"];
@@ -172,41 +174,42 @@ if (!empty($_POST["updateRolebtn"])) {
         clearHistory(); // Limpia el historial (define esta función según tus necesidades)
     }
 }
-if(!empty($_POST["updateAccountbtn"])){
-    $id_user=$_POST["id_update_account"];
-    $name=$_POST["name"];
-    if ($name == ""){
-        $name = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->name;
-    }
+if (!empty($_POST["updateAccountbtn"])) {
+    $id_user = $_POST["id_update_account"];
+    $name = $_POST["name"];
     $cellphone = $_POST["cellphone"];
-    if ($cellphone == ""){
-        $cellphone = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->cellphone;
-    }else{
-        echo 'No se dectecto el celular'.($cellphone == "");
-    }
     $password = $_POST["password"];
-    if ($password == ""){
-        $password = ($connection->query("select * from users where id = '$id_user'")->fetch_object())->password;
+
+    // Consulta la información del usuario utilizando la clase User
+    $user = getUserById($id_user);
+
+    // Actualiza los campos si se proporcionaron nuevos valores
+    if (!empty($name)) {
+        $user->setName($name);
     }
-    $sql = $connection->query( " update users set name='$name', cellphone = '$cellphone', password = '$password' where users.id=$id_user");
-    if ($sql){
-        $sql=$connection->query(" select * from users where id= '$id_user' ");//select de la base de datos
-        if ($dates=$sql->fetch_object()){//si sql devuelve una lista de atributos
-            $_SESSION["id"]=$dates->id;//almacenando el id del usuario
-            $_SESSION["name"]=$dates->name;
-            $_SESSION["email"]=$dates->email;
-            $_SESSION["password"]=$dates->password;
-            $_SESSION["role"]=$dates->role;
-            $_SESSION["cellphone"]=$dates->cellphone;
-            header("location: account.php");
-        }
-    }clearHistory();
+
+    if (!empty($cellphone)) {
+        $user->setCellphone($cellphone);
+    }
+
+    if (!empty($password)) {
+        $user->setPassword($password);
+    }
+
+    // Actualiza el usuario en la base de datos
+    if (updateUserInDatabase($user)) {
+        // Si la actualización es exitosa, actualiza la sesión
+        $_SESSION["name"] = $user->getName();
+        $_SESSION["cellphone"] = $user->getCellphone();
+        $_SESSION["password"] = $user->getPassword();
+        header("location: account.php");
+    }
 }
-if(!empty($_POST["deleteAccountBtn"])){
-    $id_user=$_POST["id_update_account"];
+if (!empty($_POST["deleteAccountBtn"])) {
+    $id_user = $_POST["id_delete_account"];
+    if ($_SESSION["role"] !== "Admin") {
+        // Consulta la información del usuario utilizando la clase User
+        $user = getUserById($id_user);
+    }
 }
-
-
-
-
 ?>
