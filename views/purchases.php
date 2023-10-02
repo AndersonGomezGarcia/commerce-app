@@ -20,18 +20,15 @@ checkSessionAndRedirect($requiredRole = "Seller");
         <h1>Info about of all purchases</h1>
         <h2>Options to manage it</h2>
       </text>
-      <!--El boton usa javascript del script.js para su funcionalidad de pop up -->
       <?php
       include "../models/connection.php";
       include "../controllers/controller_products.php";
       include "../controllers/controller_purchases.php";
-      //-----------------------------------------------------------------------------------------------------------------------------------
-      //esto es como un foreach para extrear los datos de products
-      //----------------------------------------------------------------------------------------------------------------------------------------------------------
       while ($purchases = $allsqlpurchases->fetch_object()) {
         $product = $connection->query("select * from products where products.id = '$purchases->id_product'");
+        $id_user = (($connection->query("select * from clients where clients.id = '$purchases->id_client'"))->fetch_object())->id_user;
         $payments = ($connection->query("select * from payments where id = '$purchases->id_payment'"))->fetch_object();
-
+        $user = ($connection->query("select * from users where id = '$id_user'"))->fetch_object();
         while ($prod = $product->fetch_object()) {
           $products = $prod;
         }
@@ -39,7 +36,7 @@ checkSessionAndRedirect($requiredRole = "Seller");
         <div class="card_seller">
           <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia) ?>"></div>
           <text>
-            <h2 class="tittle">Purchase#<?= $purchases->id ?> of Cliente #<?= $purchases->id_client ?>: <?php echo $products->name; ?></h2>
+            <h2 class="tittle">Purchase#<?= $purchases->id ?> of Cliente #<?= $purchases->id_client ?> (User #<?= $id_user ?> Email: <?= $user->email ?> ): <?php echo $products->name; ?></h2>
             <h3><?php echo $products->description; ?>.</h3>
           </text>
           <div class="ed">
@@ -55,10 +52,10 @@ checkSessionAndRedirect($requiredRole = "Seller");
             <button class="dangerButton" onclick="openModal('delete','purchase',<?= $purchases->id ?>)">Delete</button>
           </div>
         </div>
-        <!-- modal delete---------------------------------------------------------->
+        <!-- modal aprove---------------------------------------------------------->
         <div id="modal_aprove_purchase#<?= $purchases->id ?>" class="modal">
 
-          <!-- Modal content delete-------------------------------------- -->
+          <!-- Modal content aprove-------------------------------------- -->
           <div class="modal-content">
 
             <span class="close" onclick="closeModal('aprove','purchase',<?= $purchases->id ?>)">&times;</span>
@@ -104,8 +101,8 @@ checkSessionAndRedirect($requiredRole = "Seller");
               </div>
             </div>
             <form class="form_add" action="" enctype="multipart/form-data" method="POST">
-              <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" placeholder="Title:">
-              <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" placeholder="Title:">
+              <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" >
+              <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" >
               <br><br>
               <button class="addb" onclick="closeModal(<?= $purchases->id ?>)">Cancel</button>
               <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok">Delete</button>

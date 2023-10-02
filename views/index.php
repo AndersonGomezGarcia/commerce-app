@@ -6,7 +6,10 @@ if (empty($_SESSION["id"])) {
 <html lang="en">
 <head>
   <?php include "../controllers/controller_html.php";
-  head("Home"); ?>
+  head("Home"); 
+  
+  ?>
+  
 </head>
 <body>
   <div id="blur">
@@ -29,6 +32,10 @@ if (empty($_SESSION["id"])) {
       include "../controllers/controller_purchases.php";
       while ($products = $sqlproducts->fetch_object()) {
         if (!$products->status) continue;
+        if (empty($_SESSION["id"])){// si no se ha logeado le da un id de sesion 0
+          $id_session = 0;
+        }else $id_session =  $_SESSION["id"];
+
       ?>
         <!-- Aca empieza el for each de la lista de products---------------------------------------------------------------->
         <div class="card">
@@ -58,7 +65,7 @@ if (empty($_SESSION["id"])) {
             <form class="form_add" action="" enctype="multipart/form-data" method="POST">
               <input type="hidden" value="<?= $products->id ?>" name="id_product">
               <input type="hidden" value="<?php echo $products->price; ?>" name="value_product">
-              <input type="hidden" value="<?= $_SESSION["id"] ?>" name="id_user"> <br><bR>
+              <input type="hidden" value="<?=$id_session ?>" name="id_user"> <br><bR>
               <label>
                 <h2> Enter details about the type of service you want. </h2>
               </label><br> <br>

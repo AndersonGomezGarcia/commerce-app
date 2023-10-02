@@ -8,7 +8,10 @@ if(!empty($_SESSION["id"])){
         $sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
 }}
 $allsqlpurchases = $connection->query(" select * from purchases ");
+
+//Crear nueva compra
 if(!empty($_POST["add_purchase_btn"])){
+
     if($_SESSION["role"] != "Client"){
         echo '<div class="alert_a alert-success">You dont be a client</div>';
     }
@@ -28,6 +31,8 @@ if(!empty($_POST["add_purchase_btn"])){
     } clearHistory();
 }
 }
+
+//Eliminar compra
 if(!empty($_POST["deletePurchasebtn"])){
     $id=$_POST["id_delete"];
     $id_payment=$_POST["id_payment"];
@@ -39,6 +44,8 @@ if(!empty($_POST["deletePurchasebtn"])){
     echo '<div class="alert_d alert-success">Purchase deleted correctly (Your products)</div>';
     clearHistory();
 }
+
+//Actualizar estado de la compra
 if(!empty($_POST["updateStatusPurchasebtn"])){
     $idPurchase = $_POST["id_update_purchase"];
     $status = $_POST["status"];
@@ -53,7 +60,9 @@ if(!empty($_POST["updateStatusPurchasebtn"])){
         echo '<div class="alert_s success">Error in updateStatusPurchase</div>';
     }clearHistory();
 }
-if(!empty($_POST["updateStatusDeveloperPurchasebtn"])){//Options for developersDevelopers
+
+//Actualizar estado de la compra para desarrolladores
+if(!empty($_POST["updateStatusDeveloperPurchasebtn"])){
     $idPurchase = $_POST["id_update_purchase"];
     $status = $_POST["status"];
     $idDeveloper = $_POST["id_developer"];

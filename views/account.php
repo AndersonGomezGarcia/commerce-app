@@ -28,7 +28,7 @@ include "../controllers/controller_users.php";
                 <h2 class="price">Options</h2>
 
                 <button class="accessButton" onclick="openModal('update','account',<?= $_SESSION["id"] ?>)">Update</button>
-                <button class="dangerButton" onclick="openModal('delete','account',<?= $_SESSION["id"] ?>)">Delete</button>
+                <!--<button class="dangerButton" onclick="openModal('delete','account',<?= $_SESSION["id"] ?>)">Delete</button>-->
                 
             </div>
         </div>

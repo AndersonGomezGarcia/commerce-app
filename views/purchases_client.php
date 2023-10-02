@@ -32,6 +32,7 @@ checkSessionAndRedirect($requiredRole = "Client");
         //----------------------------------------------------------------------------------------------------------------------------------------------------------
         while($purchases=$sqlpurchases->fetch_object()){
             $product= $connection->query("select * from products where products.id = '$purchases->id_product'");
+            $payments= ($connection->query("select * from payments where payments.id = '$purchases->id_payment'"))->fetch_object();
             //  $details = ;
             while($prod=$product->fetch_object()){
                 $products = $prod;
@@ -44,7 +45,16 @@ checkSessionAndRedirect($requiredRole = "Client");
               <h3><?php echo $products->description; ?>.</h3>
               <br>
               <h3 class="process" ><b>Your details:  </b> <?= $purchases->clientdetails;?>  </h3>
+              <?php
+            if ($payments->method_payment == NULL) {
+            ?><div class="cancelb">Disapproved<br>Payment #<?= $purchases->id_payment ?></div><?php
+                                                                                            } else { ?>
+              <div class="addb">Approved<br>Payment #<?= $purchases->id_payment ?></div>
+            <?php
+                                                                                            }
+            ?>
           </text>
+          
           <div class="ed">
             <h2 class="price">$<?php echo $products->price; ?></h2>
             <button class="dangerButton" onclick="openModal('delete','purchase',<?= $purchases->id ?>)">Cancel Purchase</button>

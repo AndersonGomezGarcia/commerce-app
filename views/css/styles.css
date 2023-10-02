@@ -684,3 +684,11 @@ section li{
 .backupb{
     width: 20%!important;
 }
+.canvas{
+    width: 50%;
+    height: auto;
+    display: flex; 
+    padding-left: 25%;
+}
+
+

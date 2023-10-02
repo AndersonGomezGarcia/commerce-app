@@ -172,6 +172,31 @@ class User {
             $data['role']
         );
     }
+	
 
+}
+
+function getUserById($id) {
+	global $connection;
+	// Realiza la consulta SQL para obtener el usuario por su ID
+	$sql = "SELECT * FROM users WHERE id = $id";
+	$result = $connection->query($sql);
+
+	// Verifica si se encontró un usuario
+	if ($result && $result->num_rows > 0) {
+		$row = $result->fetch_assoc();
+		// Crea un objeto User con los datos obtenidos de la base de datos
+		$user = new User(
+			$row['id'],
+			$row['name'],
+			$row['email'],
+			$row['cellphone'],
+			$row['password'],
+			$row['role']
+		);
+		return $user;
+	} else {
+		return null; // Si no se encuentra el usuario, devuelve null
+	}
 }
 ?>

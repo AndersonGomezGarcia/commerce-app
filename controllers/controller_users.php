@@ -42,29 +42,7 @@ $allsqlusers = $connection->query(" select * from users ");
 
 
 // Función para obtener un usuario por su ID
-function getUserById($id) {
-    global $connection;
-    // Realiza la consulta SQL para obtener el usuario por su ID
-    $sql = "SELECT * FROM users WHERE id = $id";
-    $result = $connection->query($sql);
 
-    // Verifica si se encontró un usuario
-    if ($result && $result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        // Crea un objeto User con los datos obtenidos de la base de datos
-        $user = new User(
-            $row['id'],
-            $row['name'],
-            $row['email'],
-            $row['cellphone'],
-            $row['password'],
-            $row['role']
-        );
-        return $user;
-    } else {
-        return null; // Si no se encuentra el usuario, devuelve null
-    }
-}
 
 
 
@@ -135,6 +113,7 @@ function updateUserInDatabase($user) {
 
 
 if (!empty($_POST["updateRolebtn"])) {
+    
     // Obtiene el ID de usuario, el nuevo rol y el antiguo rol
     $id_user = $_POST["id_update_user"];
     $role = $_POST["roles"];
@@ -179,7 +158,7 @@ if (!empty($_POST["updateAccountbtn"])) {
     $name = $_POST["name"];
     $cellphone = $_POST["cellphone"];
     $password = $_POST["password"];
-
+    
     // Consulta la información del usuario utilizando la clase User
     $user = getUserById($id_user);
 

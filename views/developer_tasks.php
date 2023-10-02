@@ -53,6 +53,7 @@ checkSessionAndRedirect($requiredRole = "Developer");
             <text>
                 <h2 class="tittle">Task#<?= $payments->id ?></h2>
                 <h3>Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  Product#<?php echo $products->id ?>(<?php echo $products->name ?>) of client #<?= $purchase->id_client ?>.</h3>
+                <h3 class="process"><b> Details of client: </b> <?php echo $purchase->clientdetails; ?>.</h3>
             </text>
             <div class="ed">
                 <h2 class="price">-><?php 
@@ -69,7 +70,7 @@ checkSessionAndRedirect($requiredRole = "Developer");
             </div>
         </div>
         <!-- modal delete---------------------------------------------------------->
-        <div id="modal_aprove_purchase#<?= $products->id ?>" class="modal">
+        <div id="modal_aprove_purchase#<?= $payments->id ?>" class="modal">
   <!-- Modal content delete-------------------------------------- -->
         <div class="modal-content">
           <span class="close" onclick="closeModal('aprove','purchase',<?= $payments->id ?>)">&times;</span>
@@ -80,6 +81,7 @@ checkSessionAndRedirect($requiredRole = "Developer");
             <text>
             <h2 class="tittle">Payment#<?= $payments->id ?> of purchase #<?= $purchase->id?>:  <?php echo $products->name ?> of client #<?= $purchase->id_client ?></h2>
                 <h3><?php echo $products->description; ?>.</h3>
+                
             </text>
             <div class="ed">
                 <h2 class="price">$<?php echo $products->price; ?></h2>
