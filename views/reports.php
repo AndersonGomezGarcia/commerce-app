@@ -1,7 +1,8 @@
 <?php
 session_start();
-if (empty($_SESSION["id"])) {
-}
+include_once "../controllers/controller_session.php";
+checkSessionAndRedirect($requiredRole = "Admin");
+
 ?>
 <html lang="en">
 
@@ -24,38 +25,35 @@ if (empty($_SESSION["id"])) {
                 <h2>Options to manage it</h2>
             </text>
             <?php
+            include "../models/connection.php";
             include "../controllers/controller_reports.php";
-            ?>
+
+            ?> <br><br> <br><br> <br><br> <br><br>
+
+            <h2>Reports with developers all tasks</h2>
             <div class="canvas">
-                <canvas id="myChart"></canvas>
-            </div>
+                <canvas id="allTaskDevelopersChart"></canvas>
+            </div><br><br> <br><br>
+
+            <h2>Reports with developers all tasks Done</h2>
+            <div class="canvas">
+                <canvas id="allDoneTaskDevelopersChart"></canvas>
+            </div><br><br> <br><br>
+
+            <h2>Reports with developers all purchases</h2>
+            <div class="canvas">
+                <canvas id="allPurchasesChart"></canvas>
+            </div><br><br> <br><br>
+
+
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <?= getReportTasks("allTaskDevelopersChart"); ?>
+        <?= getReportDoneTasks("allDoneTaskDevelopersChart"); ?>
+        <?= getReportPurchases("allPurchasesChart"); ?>
+        <br><br> <br><br> <br><br> <br><br>
 
-        <script>
-            const ctx = document.getElementById('myChart');
-
-            new Chart(ctx, {
-                type: 'polarArea',
-                
-                data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
 
         <footer>
             <p>Derechos Reservados &copy; DigitCol</p>

@@ -321,7 +321,7 @@ end uptades to products dot php
     display: flex;
     vertical-align: middle;
     transition: background-image 1s;
-    background-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(hotel.jpg);
+    background-image: linear-gradient(to right, rgba(55, 111, 255, 0.2), rgba(161, 68, 255, 0.2)), url(default.png);
     background-size: 100%;
     background-position: center;
     transition: 1s;

@@ -5,10 +5,12 @@ checkSessionAndRedirect($requiredRole = "Seller");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <?php include "../controllers/controller_html.php";
   head("Home"); ?>
 </head>
+
 <body>
   <input type="hidden" name="id_user">
   <div id="blur">
@@ -25,13 +27,10 @@ checkSessionAndRedirect($requiredRole = "Seller");
       include "../controllers/controller_products.php";
       include "../controllers/controller_purchases.php";
       while ($purchases = $allsqlpurchases->fetch_object()) {
-        $product = $connection->query("select * from products where products.id = '$purchases->id_product'");
-        $id_user = (($connection->query("select * from clients where clients.id = '$purchases->id_client'"))->fetch_object())->id_user;
-        $payments = ($connection->query("select * from payments where id = '$purchases->id_payment'"))->fetch_object();
-        $user = ($connection->query("select * from users where id = '$id_user'"))->fetch_object();
-        while ($prod = $product->fetch_object()) {
-          $products = $prod;
-        }
+        $products = getItemByID($purchases->id_product, "products");
+        $id_user = getItemByID($purchases->id_client,"clients")->id_user;
+        $payments = getItemByID($purchases->id_payment, "payments");
+        $user = getItemByID($id_user, "users");
       ?>
         <div class="card_seller">
           <div class="image"><img src="data:image/jpg;base64,<?= base64_encode($products->multimedia) ?>"></div>
@@ -75,9 +74,8 @@ checkSessionAndRedirect($requiredRole = "Seller");
             <form class="form_add" action="" enctype="multipart/form-data" method="POST">
               <input type="hidden" value="<?= $purchases->id ?>" name="id_delete">
               <input type="hidden" value="<?= $payments->id ?>" name="id_payment">
-              <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" placeholder="Title:">
-              <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" placeholder="Title:">
-              <br><br>
+              <input type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment">
+              <input type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment"> <br><br>
               <button class="addb" onclick="closeModal(<?= $purchases->id ?>)">Cancel</button>
               <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok">Aprove</button>
             </form>
@@ -101,8 +99,8 @@ checkSessionAndRedirect($requiredRole = "Seller");
               </div>
             </div>
             <form class="form_add" action="" enctype="multipart/form-data" method="POST">
-              <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete" >
-              <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment" >
+              <input class="addi" type="hidden" value="<?= $purchases->id ?>" name="id_delete">
+              <input class="addi" type="hidden" value="<?= $purchases->id_payment ?>" name="id_payment">
               <br><br>
               <button class="addb" onclick="closeModal(<?= $purchases->id ?>)">Cancel</button>
               <button class="cancelb" name="deletePurchasebtn" type="submit" value="ok">Delete</button>
@@ -116,9 +114,7 @@ checkSessionAndRedirect($requiredRole = "Seller");
       <p>Derechos Reservados &copy; DigitCol</p>
     </footer>
   </div>
-  <script src="script.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script s rc="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <?= scripts() ?>
 </body>
+
 </html>

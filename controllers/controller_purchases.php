@@ -7,7 +7,8 @@ if(!empty($_SESSION["id"])){
         $id_client=$clients->fetch_array()[0];
         $sqlpurchases = $connection->query(" select * from purchases where id_client = '$id_client'");
 }}
-$allsqlpurchases = $connection->query(" select * from purchases ");
+$allsqlpurchases = getAllItems("purchases");
+
 
 //Crear nueva compra
 if(!empty($_POST["add_purchase_btn"])){

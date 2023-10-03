@@ -30,6 +30,7 @@ class Database {
 }
 // Uso de la clase para obtener la conexión
 $database = new Database();
+global $connection;
 $connection = $database->getConnection();
 // usar $connection para ejecutar consultas a la base de datos.
 // Al terminar, puede cerrar la conexión usando $database->closeConnection();

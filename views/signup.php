@@ -49,7 +49,7 @@
               </form>
             </div>
             <div>
-              <p class="mb-0">Have an account? <a href="login.php" class="text-white-50 fw-bold">Log in</a>
+              <p class="mb-0">Have an account? <a id="btnLogin" href="login.php" class="text-white-50 fw-bold">Log in</a>
               </p>
             </div>
           </div>

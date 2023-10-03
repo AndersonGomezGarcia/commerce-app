@@ -12,9 +12,9 @@ var btn_add_product= document.getElementById("btn_add_product");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn_add_product.onclick = function() {
+/*btn_add_product.onclick = function() {
   modal_add_product.style.display = "block";//pone existente el display del modal que tengamos en la variable
-}
+}*/
 function openModal(action,item,id) {
 
   var modal_update = document.getElementById("modal_"+action+"_"+item+"#"+id);
@@ -49,10 +49,7 @@ window.onclick = function(event) {
   }
 }
 
-for (var i=0; i<=conteo;i+=1){
-  console.log("aa");
-  console.log(i);
-}
+
 
 
 /*window.addEventListener('DOMContentLoaded', (event) => {
@@ -88,7 +85,10 @@ window.onload = function loadDate() {
 
   const todayDate = `${year}-${month}-${day}`;
 
-  document.getElementById("todayDate71").defaultValue = todayDate;
+  try{
+    document.getElementById("todayDate71").defaultValue = todayDate;
+  }catch(e){
+
+  }
 };
 
-loadDate();
